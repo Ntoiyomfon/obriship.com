@@ -13,7 +13,7 @@ export function formatDateTimeUtc(value: string | null | undefined) {
     return "Pending";
   }
 
-  return `${format(parseISO(value), "MMM d, yyyy")} · ${format(
+  return `${format(parseISO(value), "MMM d, yyyy")} | ${format(
     parseISO(value),
     "HH:mm"
   )} UTC`;
@@ -28,10 +28,24 @@ export function formatDateLong(value: string | null | undefined) {
 }
 
 export function statusLabel(status: ShipmentStatus) {
-  return status
-    .split("_")
-    .map((token) => token[0] + token.slice(1).toLowerCase())
-    .join(" ");
+  switch (status) {
+    case "ORDER_PLACED":
+      return "Order Received";
+    case "PICKED_UP":
+      return "Package Picked Up";
+    case "IN_TRANSIT":
+      return "In Transit";
+    case "CUSTOMS_CLEARANCE":
+      return "Customs Clearance";
+    case "OUT_FOR_DELIVERY":
+      return "Out for Delivery";
+    case "DELIVERED":
+      return "Delivered";
+    case "EXCEPTION":
+      return "Delivery Exception";
+    default:
+      return status;
+  }
 }
 
 export function getProgressIndex(status: ShipmentStatus) {
@@ -92,4 +106,3 @@ export function heroSectionLabel(label: string) {
 export function createId(prefix: string) {
   return `${prefix}-${Math.random().toString(36).slice(2, 10)}`;
 }
-

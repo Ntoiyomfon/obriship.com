@@ -37,18 +37,20 @@ function getStatusIcon(status: ShipmentStatus) {
 
 export function StatusTimeline({
   logs,
-  highlightLatest = false
+  highlightLatest = false,
+  showNotes = false
 }: {
   logs: StatusLog[];
   highlightLatest?: boolean;
+  showNotes?: boolean;
 }) {
   const reducedMotion = useReducedMotion();
 
   return (
     <section className="surface-card p-6">
       <div className="mb-6 space-y-2">
-        <p className="section-label">Timeline</p>
-        <h2 className="font-display text-title font-bold text-ink">Status History</h2>
+        <p className="section-label">Shipment Updates</p>
+        <h2 className="font-display text-title font-bold text-ink">Tracking History</h2>
       </div>
       <div className="space-y-0">
         {logs.map((log, index) => {
@@ -90,7 +92,7 @@ export function StatusTimeline({
                       {statusLabel(log.status)}
                     </Badge>
                     <p className="text-sm font-semibold text-ink">{log.locationName}</p>
-                    {log.note ? (
+                    {showNotes && log.note ? (
                       <p className="text-sm leading-6 text-muted">{log.note}</p>
                     ) : null}
                   </div>
@@ -106,4 +108,3 @@ export function StatusTimeline({
     </section>
   );
 }
-

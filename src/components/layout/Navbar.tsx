@@ -47,7 +47,7 @@ export function Navbar() {
     >
       <div className="section-shell flex h-20 items-center justify-between">
         <Link href="/" className="font-display text-xl font-extrabold tracking-[-0.05em]">
-          Global Tracking
+          Orbis
         </Link>
         <nav className="hidden items-center gap-1 md:flex">
           {navItems.map((item) => (
@@ -77,10 +77,10 @@ export function Navbar() {
           </SheetTrigger>
           <SheetContent>
             <SheetTitle className="font-display text-2xl font-bold tracking-[-0.04em]">
-              Global Tracking
+              Orbis
             </SheetTitle>
             <SheetDescription className="text-sm leading-6 text-white/70">
-              Precision shipment visibility, built for customers and operations teams.
+              Track anything, anywhere.
             </SheetDescription>
             <div className="mt-6 flex flex-col gap-3">
               {navItems.map((item) => (

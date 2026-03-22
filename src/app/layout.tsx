@@ -3,6 +3,7 @@ import { DM_Sans, JetBrains_Mono, Syne } from "next/font/google";
 import "leaflet/dist/leaflet.css";
 
 import { Providers } from "@/components/layout/Providers";
+import { env } from "@/lib/env";
 
 import "./globals.css";
 
@@ -25,8 +26,35 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Global Shipment Tracking Platform",
-  description: "Premium shipment tracking and operations management for global logistics."
+  metadataBase: new URL(env.siteUrl),
+  title: "Orbis — Track Anything, Anywhere",
+  description:
+    "Real-time shipment tracking for international and domestic deliveries. Enter your tracking number and get instant visibility on your package, wherever it is in the world.",
+  keywords: [
+    "shipment tracking",
+    "package tracking",
+    "international delivery",
+    "real-time tracking",
+    "courier tracking",
+    "logistics"
+  ],
+  openGraph: {
+    title: "Orbis — Global Shipment Tracking",
+    description:
+      "Enter your tracking number for instant, real-time visibility on your shipment.",
+    siteName: "Orbis",
+    type: "website"
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Orbis — Track Anything, Anywhere",
+    description:
+      "Enter your tracking number for instant, real-time visibility on your shipment."
+  },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png"
+  }
 };
 
 export default function RootLayout({

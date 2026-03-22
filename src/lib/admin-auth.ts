@@ -11,7 +11,7 @@ export async function getAdminSession() {
   const cookieStore = await cookies();
 
   if (cookieStore.get(ADMIN_COOKIE)?.value === "1") {
-    return { email: "admin@tracking.local", fallback: true };
+    return { email: "Operations Preview", fallback: true };
   }
 
   const supabase = await getSupabaseServerClient();
@@ -55,4 +55,3 @@ export async function clearFallbackAdminSession() {
   const cookieStore = await cookies();
   cookieStore.delete(ADMIN_COOKIE);
 }
-

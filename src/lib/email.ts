@@ -28,7 +28,7 @@ function buildEmailHtml(shipment: Shipment, status: ShipmentStatus) {
     <div style="font-family: Arial, sans-serif; background: #f8f8f6; padding: 24px;">
       <div style="max-width: 560px; margin: 0 auto; background: #ffffff; border: 1px solid #e5e7eb; border-radius: 20px; padding: 32px;">
         <div style="font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #6b7280; margin-bottom: 14px;">
-          Global Tracking Platform
+          Orbis
         </div>
         <h1 style="font-size: 28px; line-height: 1.1; color: #0a0a0a; margin: 0 0 12px;">
           ${headline}
@@ -45,7 +45,7 @@ function buildEmailHtml(shipment: Shipment, status: ShipmentStatus) {
           View Tracking
         </a>
         <p style="font-size: 14px; color: #6b7280; margin: 24px 0 0;">
-          Global Shipment Tracking Platform
+          Orbis
         </p>
       </div>
     </div>
@@ -72,4 +72,3 @@ export async function sendStatusEmail(shipment: Shipment, status: ShipmentStatus
 
   return { skipped: false };
 }
-

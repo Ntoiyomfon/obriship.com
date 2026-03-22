@@ -25,14 +25,14 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: true });
     }
 
-    return NextResponse.json({ error: "Use the local demo credentials" }, { status: 401 });
+    return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
   }
 
   const response = NextResponse.json({ success: true });
   const supabase = createSupabaseRouteClient(request, response);
 
   if (!supabase) {
-    return NextResponse.json({ error: "Supabase is not configured" }, { status: 500 });
+    return NextResponse.json({ error: "Login is temporarily unavailable" }, { status: 500 });
   }
 
   const { error } = await supabase.auth.signInWithPassword({

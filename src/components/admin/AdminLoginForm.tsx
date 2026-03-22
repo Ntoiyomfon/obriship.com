@@ -52,14 +52,9 @@ export function AdminLoginForm() {
   return (
     <Card className="w-full max-w-md border-white/10 bg-white">
       <CardHeader className="space-y-3">
-        <p className="section-label">Admin Access</p>
+        <p className="section-label">Orbis Admin</p>
         <CardTitle>Operations Login</CardTitle>
-        <CardDescription>
-          Sign in with Supabase credentials. Without Supabase configured, use
-          <span className="mx-2 font-mono text-xs">admin@tracking.local</span>
-          /
-          <span className="ml-2 font-mono text-xs">demo-admin</span>.
-        </CardDescription>
+        <CardDescription>Authorised personnel only.</CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
@@ -85,7 +80,7 @@ export function AdminLoginForm() {
                 Signing In
               </>
             ) : (
-              "Enter Admin Terminal"
+              "Sign In"
             )}
           </Button>
         </form>

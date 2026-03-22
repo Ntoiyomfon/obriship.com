@@ -40,7 +40,7 @@ export function ShipmentTable({ response, query = "", status = "ALL" }: Shipment
     <Card>
       <CardHeader className="gap-6">
         <div className="space-y-2">
-          <p className="section-label">Shipment Queue</p>
+          <p className="section-label">Shipment Operations</p>
           <CardTitle>Active Shipment Registry</CardTitle>
         </div>
         <form action="/admin/dashboard" className="grid gap-4 lg:grid-cols-[1fr,220px,auto]">
@@ -63,7 +63,13 @@ export function ShipmentTable({ response, query = "", status = "ALL" }: Shipment
         </form>
       </CardHeader>
       <CardContent className="space-y-6">
-        <div className="grid gap-4 md:hidden">
+        {response.items.length === 0 ? (
+          <div className="rounded-2xl border border-border bg-surface p-8 text-center text-muted">
+            No shipments found. Create your first shipment to get started.
+          </div>
+        ) : null}
+        {response.items.length > 0 ? (
+          <div className="grid gap-4 md:hidden">
           {response.items.map((shipment) => (
             <article key={shipment.id} className="rounded-2xl border border-border bg-surface p-4">
               <div className="flex items-start justify-between gap-3">
@@ -108,9 +114,11 @@ export function ShipmentTable({ response, query = "", status = "ALL" }: Shipment
               </div>
             </article>
           ))}
-        </div>
+          </div>
+        ) : null}
 
-        <div className="hidden overflow-x-auto md:block">
+        {response.items.length > 0 ? (
+          <div className="hidden overflow-x-auto md:block">
           <Table>
             <TableHeader>
               <TableRow>
@@ -163,13 +171,16 @@ export function ShipmentTable({ response, query = "", status = "ALL" }: Shipment
               ))}
             </TableBody>
           </Table>
-        </div>
+          </div>
+        ) : null}
 
-        <Pagination
-          page={response.page}
-          pageCount={response.pageCount}
-          buildHref={buildHref}
-        />
+        {response.items.length > 0 ? (
+          <Pagination
+            page={response.page}
+            pageCount={response.pageCount}
+            buildHref={buildHref}
+          />
+        ) : null}
       </CardContent>
     </Card>
   );

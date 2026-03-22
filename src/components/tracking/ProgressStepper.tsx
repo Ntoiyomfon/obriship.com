@@ -15,12 +15,10 @@ export function ProgressStepper({ status }: { status: ShipmentStatus }) {
       <div className="mb-6 flex items-end justify-between gap-4">
         <div>
           <p className="section-label">Progress</p>
-          <h2 className="mt-2 font-display text-title font-bold text-ink">
-            Shipment Milestones
-          </h2>
+          <h2 className="mt-2 font-display text-title font-bold text-ink">Delivery Milestones</h2>
         </div>
         <p className="hidden text-sm text-muted md:block">
-          {status === "EXCEPTION" ? "Issue detected in transit" : statusLabel(status)}
+          {status === "EXCEPTION" ? "Issue detected during delivery" : statusLabel(status)}
         </p>
       </div>
       <div className="grid gap-4 md:grid-cols-5">
@@ -73,4 +71,3 @@ export function ProgressStepper({ status }: { status: ShipmentStatus }) {
     </div>
   );
 }
-

@@ -55,7 +55,7 @@ export default async function EditShipmentPage({
         <StatusUpdateForm shipment={shipment} />
         <div className="grid gap-6 xl:grid-cols-[0.95fr,1.05fr]">
           <CreateShipmentForm shipment={shipment} />
-          <StatusTimeline logs={shipment.statusLogs} />
+          <StatusTimeline logs={shipment.statusLogs} showNotes />
         </div>
         <Card>
           <CardHeader>

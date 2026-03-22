@@ -1,7 +1,12 @@
 import { redirect } from "next/navigation";
+import type { Metadata } from "next";
 
 import { AdminLoginForm } from "@/components/admin/AdminLoginForm";
 import { getAdminSession } from "@/lib/admin-auth";
+
+export const metadata: Metadata = {
+  title: "Orbis Admin"
+};
 
 export default async function AdminLoginPage() {
   const session = await getAdminSession();

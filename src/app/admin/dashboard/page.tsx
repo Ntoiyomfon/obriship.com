@@ -21,7 +21,11 @@ export default async function AdminDashboardPage({
 
   return (
     <AdminShell email={session.email}>
-      <div className="section-shell py-10 md:py-12">
+      <div className="section-shell space-y-6 py-10 md:py-12">
+        <div className="space-y-2">
+          <p className="section-label">Shipment Operations</p>
+          <h1 className="font-display text-headline font-extrabold text-ink">Overview</h1>
+        </div>
         <ShipmentTable response={response} query={query} status={status} />
       </div>
     </AdminShell>
