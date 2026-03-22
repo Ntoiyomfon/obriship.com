@@ -5,7 +5,7 @@ export const env = {
   resendApiKey: process.env.RESEND_API_KEY,
   resendFromEmail: process.env.RESEND_FROM_EMAIL,
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
-  supportEmail: process.env.NEXT_PUBLIC_SUPPORT_EMAIL ?? "support@orbis.com"
+  supportEmail: process.env.NEXT_PUBLIC_SUPPORT_EMAIL ?? "support@orbiship.com"
 };
 
 export const hasSupabaseEnv = Boolean(env.supabaseUrl && env.supabaseAnonKey);

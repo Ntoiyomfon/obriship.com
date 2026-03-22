@@ -96,7 +96,7 @@ export default function HomePage() {
               Built for the way goods actually move.
             </h2>
             <p className="max-w-2xl text-body text-muted">
-              Orbis was built to solve a simple problem — people shouldn't have to wonder
+              Orbis was built to solve a simple problem people shouldn't have to wonder
               where their package is. Whether it's a cross-border business shipment or a
               personal delivery, everyone deserves clear, accurate, and timely information.
             </p>
