@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     "logistics"
   ],
   openGraph: {
-    title: "Orbis — Global Shipment Tracking",
+    title: "Orbis | Global Shipment Tracking",
     description:
       "Enter your tracking number for instant, real-time visibility on your shipment.",
     siteName: "Orbis",
