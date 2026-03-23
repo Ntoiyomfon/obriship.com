@@ -45,10 +45,13 @@ export async function DELETE(
   }
 
   const { id } = await context.params;
-  const deleted = await deleteShipment(id);
+  const result = await deleteShipment(id);
 
-  if (!deleted) {
-    return NextResponse.json({ error: "Shipment not found" }, { status: 404 });
+  if (!result.success) {
+    return NextResponse.json(
+      { error: result.error ?? "Unable to delete shipment" },
+      { status: result.notFound ? 404 : 500 }
+    );
   }
 
   return NextResponse.json({ success: true });
@@ -68,7 +71,15 @@ export async function POST(
     }
 
     const { id } = await context.params;
-    await deleteShipment(id);
+    const result = await deleteShipment(id);
+
+    if (!result.success) {
+      return NextResponse.json(
+        { error: result.error ?? "Unable to delete shipment" },
+        { status: result.notFound ? 404 : 500 }
+      );
+    }
+
     return NextResponse.redirect(new URL("/admin/dashboard", request.url));
   }
 

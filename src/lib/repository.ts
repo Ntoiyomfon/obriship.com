@@ -338,14 +338,22 @@ export async function updateShipment(id: string, updates: UpdateShipmentInput) {
   return getShipmentById(id);
 }
 
-export async function deleteShipment(id: string) {
+export async function deleteShipment(id: string): Promise<{
+  success: boolean;
+  notFound?: boolean;
+  error?: string;
+}> {
   const supabase = getSupabaseAdminClient();
 
   if (!supabase) {
     const shipmentIndex = mockShipments.findIndex((entry) => entry.id === id);
 
     if (shipmentIndex < 0) {
-      return false;
+      return {
+        success: false,
+        notFound: true,
+        error: "Shipment not found"
+      };
     }
 
     mockShipments.splice(shipmentIndex, 1);
@@ -356,11 +364,36 @@ export async function deleteShipment(id: string) {
       }
     }
 
-    return true;
+    return { success: true };
   }
 
-  const { error } = await supabase.from("shipments").delete().eq("id", id);
-  return !error;
+  const { error: logsError } = await supabase.from("status_logs").delete().eq("shipment_id", id);
+
+  if (logsError) {
+    return {
+      success: false,
+      error: logsError.message
+    };
+  }
+
+  const { data, error } = await supabase.from("shipments").delete().eq("id", id).select("id");
+
+  if (error) {
+    return {
+      success: false,
+      error: error.message
+    };
+  }
+
+  if (!data?.length) {
+    return {
+      success: false,
+      notFound: true,
+      error: "Shipment not found"
+    };
+  }
+
+  return { success: true };
 }
 
 export async function addStatusUpdate(

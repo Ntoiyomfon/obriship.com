@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { CreateShipmentForm } from "@/components/admin/CreateShipmentForm";
+import { DeleteShipmentButton } from "@/components/admin/DeleteShipmentButton";
 import { StatusUpdateForm } from "@/components/admin/StatusUpdateForm";
 import { AdminShell } from "@/components/layout/AdminShell";
 import { StatusTimeline } from "@/components/tracking/StatusTimeline";
@@ -63,10 +64,7 @@ export default async function EditShipmentPage({
             <CardTitle>Delete Shipment</CardTitle>
           </CardHeader>
           <CardContent>
-            <form action={`/api/shipments/${shipment.id}`} method="post">
-              <input type="hidden" name="_method" value="DELETE" />
-              <Button variant="destructive">Delete Shipment Record</Button>
-            </form>
+            <DeleteShipmentButton shipmentId={shipment.id} />
           </CardContent>
         </Card>
       </div>

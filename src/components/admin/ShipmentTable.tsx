@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
+import { buttonVariants } from "@/components/ui/button-variants";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -14,7 +15,7 @@ import {
   TableHeader,
   TableRow
 } from "@/components/ui/table";
-import { formatDateTimeUtc, statusBadgeClassName, statusLabel } from "@/lib/utils";
+import { cn, formatDateTimeUtc, statusBadgeClassName, statusLabel } from "@/lib/utils";
 import { SHIPMENT_STATUSES, type ShipmentListResponse } from "@/types/shipment";
 
 interface ShipmentTableProps {
@@ -103,13 +104,17 @@ export function ShipmentTable({ response, query = "", status = "ALL" }: Shipment
                 </div>
               </div>
               <div className="mt-4 flex gap-2">
-                <Link href={`/track/${shipment.trackingId}`} className="flex-1">
-                  <Button variant="secondary" className="w-full">
-                    View
-                  </Button>
+                <Link
+                  href={`/track/${shipment.trackingId}`}
+                  className={cn(buttonVariants({ variant: "secondary" }), "flex-1")}
+                >
+                  View
                 </Link>
-                <Link href={`/admin/shipments/${shipment.id}`} className="flex-1">
-                  <Button className="w-full">Edit</Button>
+                <Link
+                  href={`/admin/shipments/${shipment.id}`}
+                  className={cn(buttonVariants(), "flex-1")}
+                >
+                  Edit
                 </Link>
               </div>
             </article>
@@ -159,11 +164,14 @@ export function ShipmentTable({ response, query = "", status = "ALL" }: Shipment
                   </TableCell>
                   <TableCell>
                     <div className="flex justify-end gap-2">
-                      <Link href={`/track/${shipment.trackingId}`}>
-                        <Button variant="secondary">View</Button>
+                      <Link
+                        href={`/track/${shipment.trackingId}`}
+                        className={buttonVariants({ variant: "secondary" })}
+                      >
+                        View
                       </Link>
-                      <Link href={`/admin/shipments/${shipment.id}`}>
-                        <Button>Edit</Button>
+                      <Link href={`/admin/shipments/${shipment.id}`} className={buttonVariants()}>
+                        Edit
                       </Link>
                     </div>
                   </TableCell>

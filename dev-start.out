@@ -1,0 +1,19 @@
+
+> tracking-site@0.1.0 dev
+> next dev
+
+   next-swc build: wasm build @next/swc-wasm-nodejs
+   next-swc build: wasm build @next/swc-wasm-nodejs
+   ▲ Next.js 15.5.14
+   - Local:        http://localhost:3000
+   - Network:      http://10.158.182.71:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 5.3s
+ ○ Compiling /admin/shipments/[id] ...
+ ✓ Compiled /admin/shipments/[id] in 55.2s (1980 modules)
+ GET /admin/shipments/02e67daa-47b5-4295-aa08-e93098aa655e 307 in 70750ms
+ ○ Compiling /admin/login ...
+ ✓ Compiled /admin/login in 2.3s (1944 modules)
+ GET /admin/login 200 in 14211ms
