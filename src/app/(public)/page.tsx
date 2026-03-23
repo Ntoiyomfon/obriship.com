@@ -13,7 +13,7 @@ const features = [
   {
     title: "End-to-End Coverage",
     description:
-      "From international customs clearance to last-mile delivery, every handoff is logged and visible on an interactive map — so you never lose sight of your shipment.",
+      "From international customs clearance to last-mile delivery, every handoff is logged and visible on an interactive map so you never lose sight of your shipment.",
     icon: Globe2
   },
   {
@@ -36,7 +36,7 @@ export default function HomePage() {
                 Track anything, anywhere.
               </h1>
               <p className="max-w-2xl text-lg leading-8 text-white/72">
-                From first pickup to final delivery — follow your shipment every step of the
+                From first pickup to final delivery follow your shipment every step of the
                 way with live location updates, clear status milestones, and instant
                 notifications.
               </p>
@@ -63,7 +63,7 @@ export default function HomePage() {
             </h2>
             <p className="text-body text-muted">
               Simple to use for customers. Powerful enough for logistics teams. Enter a
-              tracking number and get a complete, real-time picture of your shipment — no
+              tracking number and get a complete, real-time picture of your shipment no
               account needed.
             </p>
           </div>
@@ -139,7 +139,7 @@ export default function HomePage() {
             </h2>
             <p className="max-w-2xl text-body text-muted">
               If you have a question about a delivery, a delay, or need to report an issue
-              — our support team is ready to help. Have your tracking number on hand when
+               our support team is ready to help. Have your tracking number on hand when
               you reach out.
             </p>
           </div>
