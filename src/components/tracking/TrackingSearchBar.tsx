@@ -39,7 +39,7 @@ export function TrackingSearchBar({
           ref={inputRef}
           value={value}
           onChange={(event) => setValue(event.target.value)}
-          placeholder="Enter your tracking number — e.g. TRK-2024-XKQP"
+          placeholder="Enter your tracking number"
           className="h-14 border-0 bg-transparent px-0 font-mono text-mono !text-ink caret-ink shadow-none focus:ring-0"
           aria-label="Tracking number"
         />
