@@ -1,5 +1,6 @@
 import { ArrowRight, Globe2, Radar, TimerReset } from "lucide-react";
 
+import GlobeHero from "@/components/globe/GlobeHero";
 import { TrackingSearchBar } from "@/components/tracking/TrackingSearchBar";
 import { env } from "@/lib/env";
 
@@ -30,18 +31,23 @@ export default function HomePage() {
       <section className="hero-noise relative overflow-hidden bg-ink py-20 text-white md:py-28">
         <div className="terminal-grid absolute inset-0 opacity-30" />
         <div className="section-shell relative z-10 flex min-h-[calc(100vh-5rem)] flex-col justify-center">
-          <div className="max-w-4xl space-y-8">
-            <div className="space-y-4">
-              <h1 className="max-w-3xl font-display text-[clamp(3.5rem,8vw,6rem)] font-extrabold leading-none tracking-[-0.05em]">
-                Track anything, anywhere.
-              </h1>
-              <p className="max-w-2xl text-lg leading-8 text-white/72">
-                From first pickup to final delivery follow your shipment every step of the
-                way with live location updates, clear status milestones, and instant
-                notifications.
-              </p>
+          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+            <div className="max-w-4xl space-y-8 z-10">
+              <div className="space-y-4">
+                <h1 className="max-w-3xl font-display text-[clamp(3.5rem,8vw,6rem)] font-extrabold leading-none tracking-[-0.05em]">
+                  Track anything, anywhere.
+                </h1>
+                <p className="max-w-2xl text-lg leading-8 text-white/72">
+                  From first pickup to final delivery, follow your shipment every step of the
+                  way with live location updates, clear status milestones, and instant
+                  notifications.
+                </p>
+              </div>
+              <TrackingSearchBar />
             </div>
-            <TrackingSearchBar />
+            <div className="relative hidden h-[560px] lg:block">
+              <GlobeHero />
+            </div>
           </div>
         </div>
       </section>

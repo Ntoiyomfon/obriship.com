@@ -27,7 +27,7 @@ const jetBrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.siteUrl),
-  title: "Orbis — Track Anything, Anywhere",
+  title: "Orbis | Track Anything, Anywhere",
   description:
     "Real-time shipment tracking for international and domestic deliveries. Enter your tracking number and get instant visibility on your package, wherever it is in the world.",
   keywords: [
