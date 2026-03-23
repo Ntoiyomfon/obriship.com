@@ -47,7 +47,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Orbis — Track Anything, Anywhere",
+    title: "Orbis | Track Anything, Anywhere",
     description:
       "Enter your tracking number for instant, real-time visibility on your shipment."
   },
