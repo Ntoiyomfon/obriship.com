@@ -76,13 +76,13 @@ export function TrackingMapClient({
         <CardTitle className="text-white">Shipment Map</CardTitle>
       </CardHeader>
       <CardContent className="pt-6">
-        <div className="overflow-hidden rounded-2xl border border-white/10">
+        <div className="relative z-0 overflow-hidden rounded-2xl border border-white/10">
           <MapContainer
             center={[lat, lng]}
             zoom={3}
             scrollWheelZoom={false}
             zoomControl={false}
-            className="h-[360px] w-full"
+            className="z-0 h-[360px] w-full"
           >
             <ZoomControl position="bottomright" />
             <TileLayer
