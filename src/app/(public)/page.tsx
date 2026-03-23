@@ -34,7 +34,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
             <div className="max-w-4xl space-y-8 z-10">
               <div className="space-y-4">
-                <h1 className="max-w-3xl font-display text-[clamp(2.75rem,13vw,4.5rem)] font-extrabold leading-none tracking-[-0.05em] md:text-[clamp(3.5rem,8vw,6rem)]">
+                <h1 className="max-w-3xl font-display text-[clamp(2.15rem,10.5vw,4.5rem)] font-extrabold leading-none tracking-[-0.05em] sm:text-[clamp(2.75rem,13vw,4.5rem)] md:text-[clamp(3.5rem,8vw,6rem)]">
                   Track anything, anywhere.
                 </h1>
                 <p className="max-w-2xl text-lg leading-8 text-white/72">
