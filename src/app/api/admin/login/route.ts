@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { createFallbackAdminSession } from "@/lib/admin-auth";
 import { hasSupabaseEnv } from "@/lib/env";
 import { createSupabaseRouteClient } from "@/lib/supabase/route";
 import { loginSchema } from "@/lib/validation";
@@ -17,15 +16,10 @@ export async function POST(request: NextRequest) {
   }
 
   if (!hasSupabaseEnv) {
-    if (
-      parsed.data.email === "admin@tracking.local" &&
-      parsed.data.password === "demo-admin"
-    ) {
-      await createFallbackAdminSession();
-      return NextResponse.json({ success: true });
-    }
-
-    return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
+    return NextResponse.json(
+      { error: "Admin login is unavailable until authentication is configured." },
+      { status: 503 }
+    );
   }
 
   const response = NextResponse.json({ success: true });

@@ -1,19 +1,10 @@
 import "server-only";
 
-import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 import { getSupabaseServerClient } from "@/lib/supabase/server";
 
-const ADMIN_COOKIE = "tracking-admin-session";
-
 export async function getAdminSession() {
-  const cookieStore = await cookies();
-
-  if (cookieStore.get(ADMIN_COOKIE)?.value === "1") {
-    return { email: "Operations Preview", fallback: true };
-  }
-
   const supabase = await getSupabaseServerClient();
 
   if (!supabase) {
@@ -28,7 +19,7 @@ export async function getAdminSession() {
     return null;
   }
 
-  return { email: user.email, fallback: false };
+  return { email: user.email };
 }
 
 export async function requireAdminSession() {
@@ -39,19 +30,4 @@ export async function requireAdminSession() {
   }
 
   return session;
-}
-
-export async function createFallbackAdminSession() {
-  const cookieStore = await cookies();
-  cookieStore.set(ADMIN_COOKIE, "1", {
-    httpOnly: true,
-    sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
-    path: "/"
-  });
-}
-
-export async function clearFallbackAdminSession() {
-  const cookieStore = await cookies();
-  cookieStore.delete(ADMIN_COOKIE);
 }

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { LoaderCircle } from "lucide-react";
+import { Eye, EyeOff, LoaderCircle } from "lucide-react";
 import { toast } from "sonner";
 import { z } from "zod";
 
@@ -19,6 +19,7 @@ type LoginValues = z.infer<typeof loginSchema>;
 export function AdminLoginForm() {
   const router = useRouter();
   const [formError, setFormError] = useState<string | null>(null);
+  const [showPassword, setShowPassword] = useState(false);
   const form = useForm<LoginValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -67,7 +68,23 @@ export function AdminLoginForm() {
           </div>
           <div className="space-y-2">
             <Label htmlFor="password">Password</Label>
-            <Input id="password" type="password" {...form.register("password")} />
+            <div className="relative">
+              <Input
+                id="password"
+                type={showPassword ? "text" : "password"}
+                className="pr-12"
+                {...form.register("password")}
+              />
+              <button
+                type="button"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-muted transition hover:text-ink"
+                onClick={() => setShowPassword((value) => !value)}
+                aria-label={showPassword ? "Hide password" : "Show password"}
+                aria-pressed={showPassword}
+              >
+                {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+              </button>
+            </div>
             {form.formState.errors.password ? (
               <p className="text-sm text-error">{form.formState.errors.password.message}</p>
             ) : null}
