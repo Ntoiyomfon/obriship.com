@@ -13,7 +13,7 @@ export default function PrivacyPolicyPage() {
         <p className="text-body text-muted">Last updated: {lastUpdated}</p>
         <div className="surface-card p-6">
           <p className="text-body text-muted">
-            Orbis collects only the information necessary to provide shipment tracking
+            FX Logistics collects only the information necessary to provide shipment tracking
             services. We do not sell or share personal information with third parties.
             Tracking data is retained for 90 days after delivery. For questions about your
             data, contact {env.supportEmail}.

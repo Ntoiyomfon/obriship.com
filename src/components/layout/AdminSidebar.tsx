@@ -107,8 +107,8 @@ export function AdminSidebar({ email }: { email: string }) {
       <div className="sticky top-0 z-30 flex items-center justify-between border-b border-white/10 bg-ink px-4 py-4 text-white lg:hidden">
         <div>
           <p className="section-label text-white/45">Shipment Operations</p>
-          <h2 className="mt-1 font-display text-xl font-bold tracking-[-0.04em]">
-            Orbis
+          <h2 className="mt-1 font-display text-xl font-bold tracking-tight">
+            FX Logistics
           </h2>
         </div>
         <Sheet>
@@ -123,8 +123,8 @@ export function AdminSidebar({ email }: { email: string }) {
             </Button>
           </SheetTrigger>
           <SheetContent side="left" className="max-w-[18rem]">
-            <SheetTitle className="font-display text-2xl font-bold tracking-[-0.04em]">
-              Orbis
+            <SheetTitle className="font-display text-2xl font-bold tracking-tight">
+              FX Logistics
             </SheetTitle>
             <SheetDescription className="text-sm leading-6 text-white/65">
               {email}
@@ -161,8 +161,8 @@ export function AdminSidebar({ email }: { email: string }) {
           <div className={cn("flex items-start", collapsed ? "justify-center" : "justify-between")}>
             <div className={cn(collapsed && "sr-only")}>
               <p className="section-label text-white/50">Shipment Operations</p>
-              <h2 className="mt-2 font-display text-2xl font-bold tracking-[-0.04em]">
-                Orbis
+              <h2 className="mt-2 font-display text-2xl font-bold tracking-tight">
+                FX Logistics
               </h2>
               <p className="mt-3 text-sm text-white/60">{email}</p>
             </div>
@@ -185,7 +185,7 @@ export function AdminSidebar({ email }: { email: string }) {
           {collapsed ? (
             <div className="mt-4 flex justify-center">
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 text-lg font-display font-bold">
-                O
+                FX
               </div>
             </div>
           ) : null}

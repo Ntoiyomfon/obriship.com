@@ -14,7 +14,7 @@ export async function generateMetadata({
   const { id } = await params;
 
   return {
-    title: `Tracking ${id.toUpperCase()} — Orbis`
+    title: `Tracking ${id.toUpperCase()} - FX Logistics`
   };
 }
 
@@ -31,14 +31,13 @@ export default async function TrackingPage({
   }
 
   return (
-    <main className="bg-surface py-10 md:py-16">
+    <main className="bg-[--surface] py-8">
       <div className="section-shell space-y-6">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="space-y-3">
             <p className="section-label">Shipment Tracking</p>
-            <p className="max-w-2xl text-sm leading-6 text-muted">
-              Follow each step of your shipment journey with live status updates and current
-              location information.
+            <p className="max-w-2xl text-sm leading-6 text-[--ink-muted]">
+              Follow each checkpoint, route movement, and delivery milestone for this shipment.
             </p>
           </div>
           <Link href="/">

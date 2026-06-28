@@ -25,12 +25,12 @@ function buildEmailHtml(shipment: Shipment, status: ShipmentStatus) {
   const trackingUrl = `${env.siteUrl}/track/${shipment.trackingId}`;
 
   return `
-    <div style="font-family: Arial, sans-serif; background: #f8f8f6; padding: 24px;">
-      <div style="max-width: 560px; margin: 0 auto; background: #ffffff; border: 1px solid #e5e7eb; border-radius: 20px; padding: 32px;">
+    <div style="font-family: Arial, sans-serif; background: #f5f4f0; padding: 24px;">
+      <div style="max-width: 560px; margin: 0 auto; background: #ffffff; border: 1px solid #e4e3df; border-radius: 12px; padding: 32px;">
         <div style="font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #6b7280; margin-bottom: 14px;">
-          Orbis
+          FX Logistics
         </div>
-        <h1 style="font-size: 28px; line-height: 1.1; color: #0a0a0a; margin: 0 0 12px;">
+        <h1 style="font-size: 28px; line-height: 1.1; color: #0e1117; margin: 0 0 12px;">
           ${headline}
         </h1>
         <p style="font-size: 16px; line-height: 1.7; color: #374151; margin: 0 0 20px;">
@@ -38,14 +38,14 @@ function buildEmailHtml(shipment: Shipment, status: ShipmentStatus) {
             status
           )}.
         </p>
-        <div style="font-family: 'JetBrains Mono', monospace; background: #0a0a0a; color: #ffffff; padding: 14px 16px; border-radius: 16px; margin-bottom: 22px;">
+        <div style="font-family: 'JetBrains Mono', monospace; background: #0e1117; color: #ffffff; padding: 14px 16px; border-radius: 12px; margin-bottom: 22px;">
           ${shipment.trackingId}
         </div>
-        <a href="${trackingUrl}" style="display: inline-block; background: #e8ff47; color: #0a0a0a; padding: 14px 22px; border-radius: 999px; text-decoration: none; font-weight: 600;">
+        <a href="${trackingUrl}" style="display: inline-block; background: #c7500a; color: #ffffff; padding: 14px 22px; border-radius: 12px; text-decoration: none; font-weight: 600;">
           View Tracking
         </a>
         <p style="font-size: 14px; color: #6b7280; margin: 24px 0 0;">
-          Orbis
+          FX Logistics
         </p>
       </div>
     </div>

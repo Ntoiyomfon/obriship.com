@@ -11,8 +11,8 @@ export default function TermsOfServicePage() {
         <p className="text-body text-muted">Last updated: {lastUpdated}</p>
         <div className="surface-card p-6">
           <p className="text-body text-muted">
-            By using Orbis, you agree to use the platform only for lawful purposes related
-            to shipment tracking. Orbis provides tracking information as a service and is
+            By using FX Logistics, you agree to use the platform only for lawful purposes related
+            to shipment tracking. FX Logistics provides tracking information as a service and is
             not liable for delays or issues caused by carriers or customs authorities.
             Service availability is not guaranteed.
           </p>

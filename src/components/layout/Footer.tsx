@@ -4,17 +4,20 @@ import { env } from "@/lib/env";
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-white py-10">
+    <footer className="border-t border-[--border] bg-white py-10">
       <div className="section-shell flex flex-col gap-6">
         <div className="space-y-2">
-          <p className="font-display text-lg font-bold text-ink">Orbis</p>
-          <p className="max-w-md text-sm leading-6 text-muted">
-            Reliable shipment tracking for individuals and businesses worldwide.
+          <p className="font-display text-lg font-bold text-[--ink]">FX Logistics</p>
+          <p className="max-w-md text-sm leading-6 text-[--ink-muted]">
+            Real-time shipment tracking, booking, and freight visibility for moving cargo.
           </p>
         </div>
-        <div className="flex flex-wrap gap-4 text-sm text-muted">
+        <div className="flex flex-wrap gap-4 text-sm text-[--ink-muted]">
           <Link href="/" className="transition hover:text-ink">
             Track a Shipment
+          </Link>
+          <Link href="/book" className="transition hover:text-ink">
+            Book a Shipment
           </Link>
           <a href={`mailto:${env.supportEmail}`} className="transition hover:text-ink">
             Support
@@ -26,8 +29,8 @@ export function Footer() {
             Terms of Service
           </Link>
         </div>
-        <div className="text-sm text-muted">
-          © 2025 Orbis. All rights reserved.
+        <div className="text-sm text-[--ink-muted]">
+          © 2026 FX Logistics. All rights reserved.
         </div>
       </div>
     </footer>

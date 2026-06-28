@@ -53,7 +53,7 @@ export function AdminLoginForm() {
   return (
     <Card className="w-full max-w-md border-white/10 bg-white">
       <CardHeader className="space-y-3">
-        <p className="section-label">Orbis Admin</p>
+        <p className="section-label">FX Logistics Admin</p>
         <CardTitle>Operations Login</CardTitle>
         <CardDescription>Authorised personnel only.</CardDescription>
       </CardHeader>

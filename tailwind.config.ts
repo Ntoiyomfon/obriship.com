@@ -7,12 +7,18 @@ const config: Config = {
       colors: {
         border: "var(--color-border)",
         input: "var(--color-border)",
-        ring: "var(--color-accent)",
+        ring: "var(--focus)",
         background: "var(--color-surface)",
         foreground: "var(--color-ink)",
         ink: "var(--color-ink)",
         surface: "var(--color-surface)",
         card: "var(--color-card)",
+        "card-hover": "var(--color-card-hover)",
+        freight: {
+          DEFAULT: "var(--freight)",
+          dim: "var(--freight-dim)",
+          light: "var(--freight-light)"
+        },
         accent: {
           DEFAULT: "var(--color-accent)",
           dim: "var(--color-accent-dim)"
@@ -31,21 +37,20 @@ const config: Config = {
         mono: ["var(--font-mono)"]
       },
       fontSize: {
-        display: ["4.5rem", { lineHeight: "1.05", letterSpacing: "-0.03em" }],
-        headline: ["2.5rem", { lineHeight: "1.1", letterSpacing: "-0.02em" }],
-        title: ["1.5rem", { lineHeight: "1.2", letterSpacing: "-0.01em" }],
-        body: ["1rem", { lineHeight: "1.6" }],
-        caption: ["0.8rem", { lineHeight: "1.4", letterSpacing: "0.04em" }],
-        mono: ["0.9rem", { lineHeight: "1.4" }]
+        display: ["4rem", { lineHeight: "1.0", letterSpacing: "-0.04em", fontWeight: "800" }],
+        headline: ["2.25rem", { lineHeight: "1.1", letterSpacing: "-0.03em", fontWeight: "700" }],
+        title: ["1.375rem", { lineHeight: "1.2", letterSpacing: "-0.02em", fontWeight: "600" }],
+        body: ["1rem", { lineHeight: "1.65" }],
+        small: ["0.875rem", { lineHeight: "1.5" }],
+        caption: ["0.75rem", { lineHeight: "1.4", letterSpacing: "0.06em" }],
+        mono: ["0.875rem", { lineHeight: "1.4" }]
       },
       boxShadow: {
-        soft: "0 1px 3px rgba(0, 0, 0, 0.06)"
+        soft: "0 1px 4px rgba(0, 0, 0, 0.06)"
       },
       backgroundImage: {
         "radial-grid":
-          "radial-gradient(circle at top, rgba(232,255,71,0.18), transparent 38%), linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0))",
-        "surface-grid":
-          "linear-gradient(rgba(10,10,10,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(10,10,10,0.03) 1px, transparent 1px)"
+          "radial-gradient(ellipse at 30% 50%, rgba(199,80,10,0.15), transparent 60%)"
       },
       keyframes: {
         "pulse-ring": {

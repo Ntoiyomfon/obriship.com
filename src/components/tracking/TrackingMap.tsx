@@ -19,6 +19,7 @@ export function TrackingMap(props: {
   locationName: string | null;
   lat: number | null;
   lng: number | null;
+  route?: Array<[number, number]>;
 }) {
   return <TrackingMapClient {...props} />;
 }

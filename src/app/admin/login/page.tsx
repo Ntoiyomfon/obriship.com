@@ -5,7 +5,7 @@ import { AdminLoginForm } from "@/components/admin/AdminLoginForm";
 import { getAdminSession } from "@/lib/admin-auth";
 
 export const metadata: Metadata = {
-  title: "Orbis Admin"
+  title: "FX Logistics Admin"
 };
 
 export default async function AdminLoginPage() {
@@ -16,7 +16,7 @@ export default async function AdminLoginPage() {
   }
 
   return (
-    <main className="hero-noise terminal-grid flex min-h-screen items-center justify-center bg-ink px-4 py-10">
+    <main className="hero-noise flex min-h-dvh items-center justify-center bg-[--freight-dim] px-4 py-10">
       <AdminLoginForm />
     </main>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useId, useRef } from "react";
 import { LoaderCircle, Search } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -10,48 +10,66 @@ import { useTrackingSearch } from "@/hooks/useTrackingSearch";
 
 export function TrackingSearchBar({
   initialValue = "",
-  className = ""
+  className = "",
+  variant = "hero",
+  autoFocus = true
 }: {
   initialValue?: string;
   className?: string;
+  variant?: "hero" | "compact";
+  autoFocus?: boolean;
 }) {
   const { value, setValue, isSubmitting, onSubmit } = useTrackingSearch(initialValue);
   const inputRef = useRef<HTMLInputElement>(null);
+  const inputId = useId();
 
   useEffect(() => {
-    if (window.matchMedia("(min-width: 768px)").matches) {
+    if (autoFocus && window.matchMedia("(min-width: 768px)").matches) {
       inputRef.current?.focus();
     }
-  }, []);
+  }, [autoFocus]);
+
+  const isCompact = variant === "compact";
 
   return (
     <form
       onSubmit={onSubmit}
-      className={`flex flex-col gap-3 rounded-[2rem] border border-white/10 bg-white p-3 shadow-2xl sm:flex-row sm:items-center ${className}`}
+      className={`flex gap-2 rounded-full border border-[--border] bg-white shadow-soft ${
+        isCompact ? "h-11 items-center p-1.5" : "flex-col p-3 sm:h-16 sm:flex-row sm:items-center"
+      } ${className}`}
     >
-      <Label htmlFor="tracking-search" className="sr-only">
+      <Label htmlFor={inputId} className="sr-only">
         Track your shipment
       </Label>
-      <div className="flex flex-1 items-center gap-3 rounded-full border border-border bg-surface px-4">
+      <div
+        className={`flex flex-1 items-center gap-3 rounded-full ${
+          isCompact ? "px-3" : "border border-border bg-surface px-4"
+        }`}
+      >
         <Search className="h-4 w-4 text-muted" />
         <Input
-          id="tracking-search"
+          id={inputId}
+          name="trackingNumber"
           ref={inputRef}
           value={value}
           onChange={(event) => setValue(event.target.value)}
-          placeholder="Enter your tracking number"
-          className="h-14 border-0 bg-transparent px-0 font-mono text-mono !text-ink caret-ink shadow-none focus:ring-0"
+          placeholder="Enter tracking number…"
+          autoComplete="off"
+          spellCheck={false}
+          className={`border-0 bg-transparent px-0 font-mono text-mono !text-ink caret-ink shadow-none focus:ring-0 ${
+            isCompact ? "h-8 w-44" : "h-12"
+          }`}
           aria-label="Tracking number"
         />
       </div>
-      <Button type="submit" className="h-14 px-8">
+      <Button type="submit" className={isCompact ? "h-8 rounded-full px-4" : "h-12 rounded-full px-8"}>
         {isSubmitting ? (
           <>
             <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
-            Tracking
+            {isCompact ? "Go" : "Tracking"}
           </>
         ) : (
-          "Track My Shipment"
+          isCompact ? "Track" : "Track My Shipment"
         )}
       </Button>
     </form>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Sans, JetBrains_Mono, Syne } from "next/font/google";
+import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import "leaflet/dist/leaflet.css";
 
 import { Providers } from "@/components/layout/Providers";
@@ -7,29 +7,29 @@ import { env } from "@/lib/env";
 
 import "./globals.css";
 
-const syne = Syne({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-display",
-  weight: ["700", "800"]
+  weight: ["700"]
 });
 
-const dmSans = DM_Sans({
+const inter = Inter({
   subsets: ["latin"],
   variable: "--font-body",
-  weight: ["400", "500", "700"]
+  weight: ["400", "500", "600"]
 });
 
 const jetBrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
-  weight: ["400", "500", "700"]
+  weight: ["400", "500"]
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.siteUrl),
-  title: "Orbis | Track Anything, Anywhere",
+  title: "FX Logistics | Real-Time Shipment Tracking",
   description:
-    "Real-time shipment tracking for international and domestic deliveries. Enter your tracking number and get instant visibility on your package, wherever it is in the world.",
+    "Track shipments in real time, book freight, and manage delivery status with FX Logistics.",
   keywords: [
     "shipment tracking",
     "package tracking",
@@ -39,15 +39,15 @@ export const metadata: Metadata = {
     "logistics"
   ],
   openGraph: {
-    title: "Orbis | Global Shipment Tracking",
+    title: "FX Logistics | Global Shipment Tracking",
     description:
       "Enter your tracking number for instant, real-time visibility on your shipment.",
-    siteName: "Orbis",
+    siteName: "FX Logistics",
     type: "website"
   },
   twitter: {
     card: "summary_large_image",
-    title: "Orbis | Track Anything, Anywhere",
+    title: "FX Logistics | Real-Time Shipment Tracking",
     description:
       "Enter your tracking number for instant, real-time visibility on your shipment."
   },
@@ -63,7 +63,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${syne.variable} ${dmSans.variable} ${jetBrainsMono.variable}`}>
+    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} ${jetBrainsMono.variable}`}>
       <body>
         <Providers>{children}</Providers>
       </body>
