@@ -2,6 +2,7 @@ import { AdminShell } from "@/components/layout/AdminShell";
 import { requireAdminSession } from "@/lib/admin-auth";
 import { listBookings } from "@/lib/repository";
 import { BookingsTable } from "@/components/admin/BookingsTable";
+import { BookingStatusFilter } from "@/components/admin/BookingStatusFilter";
 
 export default async function AdminBookingsPage({
   searchParams
@@ -23,6 +24,7 @@ export default async function AdminBookingsPage({
             Bookings
           </h1>
         </div>
+        <BookingStatusFilter currentStatus={status} />
         <BookingsTable bookings={bookings} />
       </div>
     </AdminShell>

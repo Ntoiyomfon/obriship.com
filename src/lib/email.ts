@@ -72,3 +72,65 @@ export async function sendStatusEmail(shipment: Shipment, status: ShipmentStatus
 
   return { skipped: false };
 }
+
+export async function sendBookingEmail(
+  bookingTrackingId: string,
+  senderEmail: string,
+  senderName: string,
+  event: "approved" | "dispatched"
+): Promise<{ skipped: boolean }> {
+  if (!hasResendEnv) {
+    return { skipped: true };
+  }
+
+  const resend = new Resend(env.resendApiKey);
+
+  const isApproved = event === "approved";
+
+  const headline = isApproved
+    ? "Your booking is being processed"
+    : "Your shipment has been dispatched";
+
+  const body = isApproved
+    ? `We've received your booking ${bookingTrackingId} and our team is preparing your shipment. You'll receive another update when your package is collected.`
+    : `Your shipment ${bookingTrackingId} is on its way. Use the link below to track it in real time.`;
+
+  const ctaLabel = isApproved ? "Check Booking Status" : "Track Your Shipment";
+  const ctaUrl = isApproved
+    ? `${env.siteUrl}/book/status/${bookingTrackingId}`
+    : `${env.siteUrl}/track/${bookingTrackingId}`;
+
+  const html = `
+    <div style="font-family: Arial, sans-serif; background: #f5f4f0; padding: 24px;">
+      <div style="max-width: 560px; margin: 0 auto; background: #ffffff; border: 1px solid #e4e3df; border-radius: 12px; padding: 32px;">
+        <div style="font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #6b7280; margin-bottom: 14px;">
+          FX Logistics
+        </div>
+        <h1 style="font-size: 28px; line-height: 1.1; color: #0e1117; margin: 0 0 12px;">
+          ${headline}
+        </h1>
+        <p style="font-size: 16px; line-height: 1.7; color: #374151; margin: 0 0 20px;">
+          ${body}
+        </p>
+        <div style="font-family: 'JetBrains Mono', monospace; background: #0e1117; color: #ffffff; padding: 14px 16px; border-radius: 12px; margin-bottom: 22px;">
+          ${bookingTrackingId}
+        </div>
+        <a href="${ctaUrl}" style="display: inline-block; background: #c7500a; color: #ffffff; padding: 14px 22px; border-radius: 12px; text-decoration: none; font-weight: 600;">
+          ${ctaLabel}
+        </a>
+        <p style="font-size: 14px; color: #6b7280; margin: 24px 0 0;">
+          FX Logistics · ${env.supportEmail}
+        </p>
+      </div>
+    </div>
+  `;
+
+  await resend.emails.send({
+    from: env.resendFromEmail!,
+    to: senderEmail,
+    subject: headline,
+    html
+  });
+
+  return { skipped: false };
+}

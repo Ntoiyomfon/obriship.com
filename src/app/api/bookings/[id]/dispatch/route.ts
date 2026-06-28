@@ -5,6 +5,7 @@ import {
   convertBookingToShipment,
   updateBookingStatus
 } from "@/lib/repository";
+import { sendBookingEmail } from "@/lib/email";
 import { getSupabaseAdminClient } from "@/lib/supabase/server";
 
 export async function POST(
@@ -44,6 +45,25 @@ export async function POST(
 
   // Then update status
   await updateBookingStatus(id, "dispatched");
+
+  // Send email (non-fatal if fails)
+  const sender = booking.sender as Record<string, string> | null;
+  const senderEmail = sender?.email ?? null;
+  const senderName =
+    sender?.name ?? sender?.full_name ?? sender?.firstName ?? "Customer";
+
+  try {
+    if (senderEmail) {
+      await sendBookingEmail(
+        booking.tracking_id ?? "",
+        senderEmail,
+        senderName,
+        "dispatched"
+      );
+    }
+  } catch {
+    // email failure is non-fatal
+  }
 
   return NextResponse.json({ success: true });
 }
