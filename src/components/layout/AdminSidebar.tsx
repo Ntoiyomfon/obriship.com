@@ -31,6 +31,11 @@ const links = [
     icon: LayoutDashboard
   },
   {
+    href: "/admin/bookings",
+    label: "Bookings",
+    icon: LayoutDashboard
+  },
+  {
     href: "/admin/shipments/new",
     label: "Create Shipment",
     icon: PlusCircle

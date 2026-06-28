@@ -1,6 +1,8 @@
 import Link from "next/link";
+import { headers } from "next/headers";
 import { Check } from "lucide-react";
 
+import { getRateLimiter } from "@/lib/rate-limit";
 import { getSupabaseAdminClient } from "@/lib/supabase/server";
 import type { Database } from "@/types/database.types";
 
@@ -69,6 +71,34 @@ export default async function BookingStatusPage({
 }: {
   params: Promise<{ reference: string }>;
 }) {
+  // Rate limiting for public endpoint
+  const headersList = await headers();
+  const ip =
+    headersList.get("x-forwarded-for") ??
+    headersList.get("x-real-ip") ??
+    "anonymous";
+
+  const limiter = getRateLimiter();
+
+  if (limiter) {
+    const { success } = await limiter.limit(ip);
+
+    if (!success) {
+      return (
+        <main className="flex min-h-screen items-center justify-center bg-[--surface] px-4">
+          <div className="w-full max-w-md rounded-xl border border-[--border] bg-white p-8 text-center">
+            <h1 className="font-display text-title font-bold text-[--ink]">
+              Too many requests
+            </h1>
+            <p className="mt-2 text-sm text-[--ink-muted]">
+              Please wait a moment before checking again.
+            </p>
+          </div>
+        </main>
+      );
+    }
+  }
+
   const { reference } = await params;
   const supabase = getSupabaseAdminClient();
 

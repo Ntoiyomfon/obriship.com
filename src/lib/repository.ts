@@ -27,6 +27,7 @@ type ShipmentInsert = Database["public"]["Tables"]["shipments"]["Insert"];
 type ShipmentUpdate = Database["public"]["Tables"]["shipments"]["Update"];
 type StatusLogRow = Database["public"]["Tables"]["status_logs"]["Row"];
 type StatusLogInsert = Database["public"]["Tables"]["status_logs"]["Insert"];
+type BookingRow = Database["public"]["Tables"]["bookings"]["Row"];
 
 function normalizeShipmentRow(row: ShipmentRow): Shipment {
   return {
@@ -367,6 +368,7 @@ export async function deleteShipment(id: string): Promise<{
     return { success: true };
   }
 
+  // Delete associated status_logs first
   const { error: logsError } = await supabase.from("status_logs").delete().eq("shipment_id", id);
 
   if (logsError) {
@@ -468,4 +470,137 @@ export async function addStatusUpdate(
     .eq("id", id);
 
   return getShipmentById(id);
+}
+
+// ── Booking Functions ──────────────────────────────────────
+
+export async function listBookings(options?: {
+  status?: string;
+}): Promise<BookingRow[]> {
+  const supabase = getSupabaseAdminClient();
+
+  if (!supabase) {
+    return [];
+  }
+
+  let query = supabase
+    .from("bookings")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  if (options?.status && options.status !== "ALL") {
+    query = query.eq("status", options.status);
+  }
+
+  const { data, error } = await query;
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return (data ?? []) as BookingRow[];
+}
+
+export async function getBookingByTrackingId(
+  trackingId: string
+): Promise<BookingRow | null> {
+  const supabase = getSupabaseAdminClient();
+
+  if (!supabase) {
+    return null;
+  }
+
+  const { data } = await supabase
+    .from("bookings")
+    .select("*")
+    .eq("tracking_id", trackingId)
+    .single();
+
+  return (data ?? null) as BookingRow | null;
+}
+
+export async function updateBookingStatus(
+  bookingId: string,
+  status: "pending" | "processing" | "dispatched"
+): Promise<void> {
+  const supabase = getSupabaseAdminClient();
+
+  if (!supabase) {
+    return;
+  }
+
+  const { error } = await supabase
+    .from("bookings")
+    .update({ status, updated_at: new Date().toISOString() })
+    .eq("id", bookingId);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+}
+
+export async function convertBookingToShipment(
+  booking: BookingRow
+): Promise<void> {
+  const supabase = getSupabaseAdminClient();
+
+  if (!supabase) {
+    return;
+  }
+
+  // Check if shipment already exists for this tracking_id
+  const { data: existing } = await supabase
+    .from("shipments")
+    .select("id")
+    .eq("tracking_id", booking.tracking_id ?? "")
+    .maybeSingle();
+
+  if (existing) {
+    return; // already converted, skip
+  }
+
+  const sender = booking.sender as Record<string, string>;
+  const receiver = booking.receiver as Record<string, string>;
+  const pkg = booking.package as Record<string, string | number>;
+
+  const { error } = await supabase.from("shipments").insert({
+    tracking_id: booking.tracking_id ?? "",
+    sender_name: String(sender.name ?? sender.full_name ?? sender.firstName ?? ""),
+    sender_country: String(sender.country ?? ""),
+    recipient_name: String(receiver.name ?? receiver.full_name ?? receiver.firstName ?? ""),
+    recipient_email: String(receiver.email ?? ""),
+    recipient_country: String(receiver.country ?? ""),
+    service_type: booking.service,
+    current_status: "PENDING",
+    user_id: booking.user_id ?? null,
+    weight_kg: typeof pkg.weight === "number" ? pkg.weight : null,
+    description: String(pkg.description ?? "")
+  } satisfies ShipmentInsert);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  // Insert initial status log for the new shipment
+  const { data: newShipment } = await supabase
+    .from("shipments")
+    .select("id")
+    .eq("tracking_id", booking.tracking_id ?? "")
+    .single();
+
+  if (newShipment) {
+    const senderData = booking.sender as Record<string, string>;
+    const { error: logError } = await supabase.from("status_logs").insert({
+      shipment_id: newShipment.id,
+      status: "PENDING",
+      location_name: String(senderData.city ?? senderData.country ?? "Origin"),
+      note: "Shipment booked and dispatched by FX Logistics.",
+      created_at: new Date().toISOString()
+    } satisfies StatusLogInsert);
+
+    if (logError) {
+      // Non-fatal: log entry wasn't created, but shipment was
+      console.error("Failed to insert initial status log:", logError.message);
+    }
+  }
 }
