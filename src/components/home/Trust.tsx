@@ -1,15 +1,15 @@
 const proofPoints = [
   {
-    stat: "No account",
-    detail: "needed to track any shipment",
+    stat: "Free tracking",
+    detail: "No account needed — enter any tracking number instantly",
   },
   {
-    stat: "30 seconds",
-    detail: "average update lag after a carrier scan",
+    stat: "30s updates",
+    detail: "Status refreshes within 30 seconds of a carrier scan",
   },
   {
-    stat: "150+ networks",
-    detail: "supported across carriers and regions",
+    stat: "150+ carriers",
+    detail: "Works across all major carrier networks globally",
   },
 ];
 
@@ -39,7 +39,7 @@ export function Trust() {
         <div className="space-y-0 divide-y divide-[--border]">
           {proofPoints.map(({ stat, detail }) => (
             <div key={stat} className="flex items-center gap-6 py-7">
-              <p className="w-32 shrink-0 font-display text-2xl font-extrabold text-[--freight]">
+              <p className="w-36 shrink-0 font-display text-2xl font-extrabold text-[--freight]">
                 {stat}
               </p>
               <p className="text-body text-[--ink]">{detail}</p>

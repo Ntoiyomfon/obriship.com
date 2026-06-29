@@ -1,21 +1,53 @@
+import { Globe, Route, Zap, CheckCircle } from "lucide-react";
+
 const stats = [
-  { value: "150+", label: "Countries served" },
-  { value: "2,400+", label: "Active routes" },
-  { value: "30s", label: "Update frequency" },
-  { value: "99.4%", label: "On-time visibility" },
+  {
+    icon: Globe,
+    value: "150+",
+    label: "Countries served",
+    description: "Global coverage across every major trade lane",
+  },
+  {
+    icon: Route,
+    value: "2,400+",
+    label: "Active routes",
+    description: "Direct and multi-leg freight corridors",
+  },
+  {
+    icon: Zap,
+    value: "30s",
+    label: "Update frequency",
+    description: "Real-time status after every carrier scan",
+  },
+  {
+    icon: CheckCircle,
+    value: "99.4%",
+    label: "On-time visibility",
+    description: "Shipment data accuracy across all networks",
+  },
 ];
 
 export function StatsBar() {
   return (
     <section className="border-b border-[--border] bg-white">
       <div className="section-shell py-16 md:py-20">
-        <div className="grid grid-cols-2 gap-x-8 gap-y-12 md:grid-cols-4">
-          {stats.map(({ value, label }) => (
-            <div key={label} className="space-y-2">
-              <p className="font-display text-5xl font-extrabold tracking-tight text-[--ink] md:text-6xl">
-                {value}
-              </p>
-              <p className="text-sm font-medium text-[--ink-muted]">{label}</p>
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4">
+          {stats.map(({ icon: Icon, value, label, description }) => (
+            <div key={label} className="space-y-3">
+              <div className="inline-flex size-11 items-center justify-center rounded-xl bg-[--freight-light]">
+                <Icon className="size-5 text-[--freight]" strokeWidth={1.5} />
+              </div>
+              <div>
+                <p className="font-display text-5xl font-extrabold tracking-tight text-[--ink] md:text-6xl">
+                  {value}
+                </p>
+                <p className="mt-1 text-sm font-semibold text-[--ink]">
+                  {label}
+                </p>
+                <p className="mt-0.5 text-xs text-[--ink-muted] leading-relaxed">
+                  {description}
+                </p>
+              </div>
             </div>
           ))}
         </div>

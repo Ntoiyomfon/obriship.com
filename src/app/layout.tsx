@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import { Inter, JetBrains_Mono, Bricolage_Grotesque } from "next/font/google";
 import "leaflet/dist/leaflet.css";
 
 import { Providers } from "@/components/layout/Providers";
@@ -7,16 +7,19 @@ import { env } from "@/lib/env";
 
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-display",
-  weight: ["700"]
-});
-
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-body",
-  weight: ["400", "500", "600"]
+  display: "swap",
+  weight: ["400", "500", "600", "700", "800"]
+});
+
+const bricolageGrotesque = Bricolage_Grotesque({
+  subsets: ["latin"],
+  variable: "--font-display", 
+  display: "swap",
+  weight: ["400", "500", "600", "700", "800"],
+  preload: false,
 });
 
 const jetBrainsMono = JetBrains_Mono({
@@ -63,7 +66,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} ${jetBrainsMono.variable}`}>
+    <html lang="en" className={`${bricolageGrotesque.variable} ${inter.variable} ${jetBrainsMono.variable}`}>
       <body>
         <Providers>{children}</Providers>
       </body>

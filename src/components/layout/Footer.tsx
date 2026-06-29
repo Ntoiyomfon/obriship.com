@@ -27,6 +27,24 @@ export function Footer() {
   return (
     <footer className="border-t border-[--border] bg-[--ink] text-white">
       <div className="section-shell py-16 md:py-20">
+        {/* Carrier strip */}
+        <div className="mb-12 space-y-4">
+          <p className="text-xs font-semibold uppercase tracking-widest text-white/30">
+            Carrier network
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {["UPS", "FedEx", "DHL", "USPS", "TNT", "Aramex",
+              "Maersk", "MSC", "Emirates SkyCargo", "Qatar Cargo"].map((carrier) => (
+              <span
+                key={carrier}
+                className="rounded-lg border border-white/10 px-3 py-1.5 text-xs font-medium text-white/50"
+              >
+                {carrier}
+              </span>
+            ))}
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 gap-12 md:grid-cols-[2fr_1fr_1fr_1fr]">
           {/* Brand */}
           <div className="space-y-4">
@@ -110,6 +128,29 @@ export function Footer() {
           <p className="text-xs text-white/30">
             © 2026 FX Logistics. All rights reserved.
           </p>
+          <div className="flex items-center gap-4">
+            {[
+              { label: "LinkedIn", href: "#",
+                icon: "M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z M4 6a2 2 0 100-4 2 2 0 000 4z" },
+              { label: "Twitter/X", href: "#",
+                icon: "M4 4l16 16M4 20L20 4" },
+              { label: "Facebook", href: "#",
+                icon: "M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" },
+            ].map((social) => (
+              <a
+                key={social.label}
+                href={social.href}
+                aria-label={social.label}
+                className="text-white/30 hover:text-white/70 transition-colors"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24"
+                  fill="none" stroke="currentColor" strokeWidth="2"
+                  strokeLinecap="round" strokeLinejoin="round">
+                  <path d={social.icon} />
+                </svg>
+              </a>
+            ))}
+          </div>
           <p className="text-xs text-white/30">
             United States · English
           </p>

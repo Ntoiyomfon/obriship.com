@@ -28,7 +28,7 @@
   --color-warning: var(--warning);
   --color-error: var(--error);
   --color-ink-text: #ffffff;
-  --font-display: "Space Grotesk", sans-serif;
+  --font-display: var(--font-display);
   --font-body: "Inter", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
 }
