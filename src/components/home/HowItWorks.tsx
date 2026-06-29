@@ -5,7 +5,7 @@ const steps = [
     number: "01",
     title: "Enter your tracking number",
     description:
-      "Use the number from your confirmation, shipping label, or carrier handoff document. Works with any major carrier format — no reformatting needed.",
+      "Use the number from your confirmation, shipping label, or carrier handoff document. Works with any major carrier format, no reformatting needed.",
     image: "/how-1.webp",
     alt: "Person entering tracking number",
   },
@@ -21,7 +21,7 @@ const steps = [
     number: "03",
     title: "Live updates until delivery",
     description:
-      "Follow every status change from origin through final delivery. Get notified the moment something changes — no refresh needed.",
+      "Follow every status change from origin through final delivery. Get notified the moment something changes, no refresh needed.",
     image: "/how-3.webp",
     alt: "Package delivered to door",
   },

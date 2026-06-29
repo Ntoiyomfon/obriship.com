@@ -32,7 +32,7 @@ export function Hero() {
               Your shipment, tracked in real time.
             </h1>
             <p className="max-w-xl text-pretty text-small text-white/65">
-              From pickup to doorstep - enter your tracking number for a live view of your shipment.
+              From pickup to doorstep, enter your tracking number for a live view of your shipment.
             </p>
           </div>
           <TrackingSearchBar />

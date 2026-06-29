@@ -31,10 +31,11 @@ export function TrackingSearchBar({
 
   const isCompact = variant === "compact";
 
+  // rounded-full border border-[--border] bg-white shadow-soft <-- goes in the form for hero variant
   return (
     <form
       onSubmit={onSubmit}
-      className={`flex gap-2 rounded-full border border-[--border] bg-white shadow-soft ${
+      className={`flex gap-2  ${
         isCompact ? "h-11 items-center p-1.5" : "flex-col p-3 sm:h-16 sm:flex-row sm:items-center"
       } ${className}`}
     >

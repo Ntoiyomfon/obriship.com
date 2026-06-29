@@ -130,12 +130,10 @@ export function Footer() {
           </p>
           <div className="flex items-center gap-4">
             {[
-              { label: "LinkedIn", href: "#",
-                icon: "M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z M4 6a2 2 0 100-4 2 2 0 000 4z" },
-              { label: "Twitter/X", href: "#",
-                icon: "M4 4l16 16M4 20L20 4" },
               { label: "Facebook", href: "#",
                 icon: "M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" },
+              { label: "LinkedIn", href: "#",
+                icon: "M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z M4 6a2 2 0 100-4 2 2 0 000 4z" },
             ].map((social) => (
               <a
                 key={social.label}

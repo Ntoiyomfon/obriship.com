@@ -1,7 +1,7 @@
 const proofPoints = [
   {
     stat: "Free tracking",
-    detail: "No account needed — enter any tracking number instantly",
+    detail: "No account needed, enter any tracking number instantly",
   },
   {
     stat: "30s updates",
@@ -25,7 +25,7 @@ export function Trust() {
           </h2>
           <p className="text-body text-[--ink-muted] leading-relaxed max-w-md">
             FX Logistics keeps the facts visible: where your shipment is,
-            what changed, and what happens next — in plain language.
+            what changed, and what happens next in plain language.
           </p>
           <a
             href="/"
