@@ -63,7 +63,7 @@ export function TrackingSearchBar({
           aria-label="Tracking number"
         />
       </div>
-      <Button type="submit" className={isCompact ? "h-8 rounded-full px-4" : "h-12 rounded-full px-8"}>
+      <Button type="submit" className={isCompact ? "h-8 px-4" : "h-12 rounded-full px-8"}>
         {isSubmitting ? (
           <>
             <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />
