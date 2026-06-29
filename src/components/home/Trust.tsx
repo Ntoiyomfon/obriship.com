@@ -1,30 +1,48 @@
-import { Check } from "lucide-react";
-
 const proofPoints = [
-  "No account needed to track",
-  "Updates within 30 seconds of status change",
-  "Works for 150+ carrier networks"
+  {
+    stat: "No account",
+    detail: "needed to track any shipment",
+  },
+  {
+    stat: "30 seconds",
+    detail: "average update lag after a carrier scan",
+  },
+  {
+    stat: "150+ networks",
+    detail: "supported across carriers and regions",
+  },
 ];
 
 export function Trust() {
   return (
     <section className="bg-[--surface] py-20 md:py-28">
-      <div className="section-shell grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-        <div className="space-y-4">
+      <div className="section-shell grid gap-16 lg:grid-cols-2 lg:items-center">
+        {/* Left */}
+        <div className="space-y-6">
           <p className="section-label">Shipment Confidence</p>
-          <h2 className="text-balance font-display text-headline text-[--ink]">
-            Clear answers without opening a support ticket.
+          <h2 className="font-display text-headline text-[--ink]">
+            Clear answers. No support ticket required.
           </h2>
-          <p className="text-pretty text-body text-[--ink-muted]">
-            FX Logistics keeps the important shipment facts visible: where it is, what changed,
-            and what happens next.
+          <p className="text-body text-[--ink-muted] leading-relaxed max-w-md">
+            FX Logistics keeps the facts visible: where your shipment is,
+            what changed, and what happens next — in plain language.
           </p>
+          <a
+            href="/"
+            className="inline-flex items-center gap-2 rounded-lg bg-[--freight] px-5 py-3 text-sm font-semibold text-white hover:bg-[#b04508] transition-colors"
+          >
+            Track a shipment now →
+          </a>
         </div>
-        <div className="space-y-4">
-          {proofPoints.map((point) => (
-            <div key={point} className="flex items-start gap-4 border-b border-[--border] pb-5 last:border-b-0">
-              <Check className="mt-1 size-5 shrink-0 text-[--freight]" />
-              <p className="font-display text-title text-[--ink]">{point}</p>
+
+        {/* Right */}
+        <div className="space-y-0 divide-y divide-[--border]">
+          {proofPoints.map(({ stat, detail }) => (
+            <div key={stat} className="flex items-center gap-6 py-7">
+              <p className="w-32 shrink-0 font-display text-2xl font-extrabold text-[--freight]">
+                {stat}
+              </p>
+              <p className="text-body text-[--ink]">{detail}</p>
             </div>
           ))}
         </div>

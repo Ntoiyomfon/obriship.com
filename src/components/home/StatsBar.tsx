@@ -1,20 +1,24 @@
 const stats = [
-  ["150+", "Countries"],
-  ["2,400+", "Routes"],
-  ["Real-Time", "Updates"],
-  ["End-to-End", "Tracking"]
+  { value: "150+", label: "Countries served" },
+  { value: "2,400+", label: "Active routes" },
+  { value: "30s", label: "Update frequency" },
+  { value: "99.4%", label: "On-time visibility" },
 ];
 
 export function StatsBar() {
   return (
     <section className="border-b border-[--border] bg-white">
-      <div className="section-shell grid gap-0 py-6 sm:grid-cols-2 md:grid-cols-4 md:divide-x md:divide-[--border]">
-        {stats.map(([value, label]) => (
-          <div key={label} className="px-4 py-4 text-center md:first:pl-0 md:last:pr-0">
-            <p className="font-display text-2xl font-extrabold tracking-tight text-[--ink]">{value}</p>
-            <p className="mt-1 text-small text-[--ink-muted]">{label}</p>
-          </div>
-        ))}
+      <div className="section-shell py-16 md:py-20">
+        <div className="grid grid-cols-2 gap-x-8 gap-y-12 md:grid-cols-4">
+          {stats.map(({ value, label }) => (
+            <div key={label} className="space-y-2">
+              <p className="font-display text-5xl font-extrabold tracking-tight text-[--ink] md:text-6xl">
+                {value}
+              </p>
+              <p className="text-sm font-medium text-[--ink-muted]">{label}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

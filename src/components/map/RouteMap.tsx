@@ -2,63 +2,169 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 
-const routes = [
-  "M84 214 C168 118 285 118 378 190 S578 288 706 172",
-  "M126 296 C248 236 350 254 442 318 S612 382 720 292",
-  "M218 132 C324 86 424 104 520 158 S656 224 744 112"
+// Real shipping route coordinates (as percentages of viewBox 0-100)
+// These connect actual geographic locations on a world map
+const ROUTES = [
+  // New York → London
+  {
+    id: "ny-london",
+    x1: 27, y1: 38, x2: 51, y2: 33,
+    delay: 0
+  },
+  // Los Angeles → Shanghai
+  {
+    id: "la-shanghai",
+    x1: 15, y1: 42, x2: 78, y2: 40,
+    delay: 0.8
+  },
+  // Rotterdam → Singapore
+  {
+    id: "rotterdam-singapore",
+    x1: 52, y1: 30, x2: 76, y2: 55,
+    delay: 1.6
+  },
+  // Miami → São Paulo
+  {
+    id: "miami-brazil",
+    x1: 26, y1: 46, x2: 33, y2: 65,
+    delay: 2.4
+  }
 ];
 
-const highlightRoutes = [
-  { path: "M126 296 C248 236 350 254 442 318 S612 382 720 292", delay: "0s" },
-  { path: "M84 214 C168 118 285 118 378 190 S578 288 706 172", delay: "0.7s" },
-  { path: "M218 132 C324 86 424 104 520 158 S656 224 744 112", delay: "1.4s" }
+// City dot positions (% of viewBox 0-100)
+const CITIES = [
+  { id: "new-york", x: 27, y: 38, label: "New York" },
+  { id: "london", x: 51, y: 33, label: "London" },
+  { id: "los-angeles", x: 15, y: 42, label: "Los Angeles" },
+  { id: "shanghai", x: 78, y: 40, label: "Shanghai" },
+  { id: "rotterdam", x: 52, y: 30, label: "Rotterdam" },
+  { id: "singapore", x: 76, y: 55, label: "Singapore" },
+  { id: "miami", x: 26, y: 46, label: "Miami" },
+  { id: "sao-paulo", x: 33, y: 65, label: "São Paulo" },
 ];
+
+function getCurvedPath(
+  x1: number, y1: number,
+  x2: number, y2: number
+): string {
+  // Convert percentage to SVG units (viewBox 0 0 1000 500)
+  const sx = x1 * 10;
+  const sy = y1 * 5;
+  const ex = x2 * 10;
+  const ey = y2 * 5;
+  // Control point arcs upward for shipping route feel
+  const cx = (sx + ex) / 2;
+  const cy = Math.min(sy, ey) - 60;
+  return `M${sx},${sy} Q${cx},${cy} ${ex},${ey}`;
+}
 
 export function RouteMap({ className = "" }: { className?: string }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <svg
-      viewBox="0 0 820 460"
-      role="img"
-      aria-label="Cargo routes connecting major shipping regions"
-      className={className}
-    >
-      <defs>
-        <filter id="route-soften">
-          <feGaussianBlur stdDeviation="0.2" />
-        </filter>
-      </defs>
-      <g fill="rgba(255,255,255,0.08)">
-        <path d="M98 168c48-44 102-58 166-42 38 9 76 6 112-10 32-14 68-14 96 2 28 17 41 46 32 76-10 31-38 48-82 50-56 2-90 24-102 66-8 28-34 42-76 42-58 0-102-24-132-70-26-40-54-56-86-48-20 5-34-7-38-27-4-16 0-29 10-39z" />
-        <path d="M540 236c44-28 88-31 132-8 38 20 58 50 60 90 2 34-12 58-42 72-34 16-70 10-108-18-28-20-56-25-86-15-25 8-42 0-50-22-8-23 0-45 22-66 18-17 42-28 72-33z" />
-        <path d="M620 96c42-24 78-20 108 12 24 26 26 55 6 86-21 31-52 39-94 24-30-12-58-7-84 14-22 17-44 17-64-2-20-18-22-40-6-66 24-38 68-48 134-68z" />
-      </g>
+    <div className={`relative ${className}`}>
+      {/* World map as background image */}
+      <img
+        src="/world-map.svg"
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full object-contain opacity-[0.08]"
+        style={{ filter: "brightness(0) invert(1)" }}
+      />
 
-      {routes.map((route) => (
-        <motion.path
-          key={route}
-          d={route}
-          fill="none"
-          stroke="rgba(255,255,255,0.18)"
-          strokeWidth="1.5"
-          filter="url(#route-soften)"
-          initial={reduceMotion ? false : { pathLength: 0 }}
-          animate={reduceMotion ? undefined : { pathLength: 1 }}
-          transition={{ duration: 1.1, ease: "easeOut" }}
-        />
-      ))}
+      {/* Dot-grid texture overlay as fallback texture */}
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, rgba(255,255,255,0.15) 1px, transparent 1px)",
+          backgroundSize: "24px 24px"
+        }}
+      />
 
-      {highlightRoutes.map((route) => (
-        <g key={route.path}>
-          <path d={route.path} fill="none" stroke="rgba(199,80,10,0.7)" strokeWidth="1.5" />
-          {reduceMotion ? null : (
-            <circle r="4" fill="#C7500A">
-              <animateMotion dur="3.4s" repeatCount="indefinite" begin={route.delay} path={route.path} />
-            </circle>
-          )}
-        </g>
-      ))}
-    </svg>
+      {/* Route overlay SVG */}
+      <svg
+        viewBox="0 0 1000 500"
+        className="relative z-10 h-full w-full"
+        role="img"
+        aria-label="Global shipping routes"
+      >
+        {/* Route lines */}
+        {ROUTES.map((route) => {
+          const path = getCurvedPath(
+            route.x1, route.y1, route.x2, route.y2
+          );
+          return (
+            <g key={route.id}>
+              {/* Ghost trail */}
+              <path
+                d={path}
+                fill="none"
+                stroke="rgba(255,255,255,0.1)"
+                strokeWidth="1"
+              />
+              {/* Animated highlight */}
+              {reduceMotion ? (
+                <path
+                  d={path}
+                  fill="none"
+                  stroke="#C7500A"
+                  strokeWidth="1.5"
+                  opacity="0.6"
+                />
+              ) : (
+                <motion.path
+                  d={path}
+                  fill="none"
+                  stroke="#C7500A"
+                  strokeWidth="1.5"
+                  opacity="0.7"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{
+                    duration: 1.4,
+                    delay: route.delay * 0.3,
+                    ease: "easeOut"
+                  }}
+                />
+              )}
+              {/* Moving dot along route */}
+              {!reduceMotion && (
+                <circle r="3" fill="#C7500A">
+                  <animateMotion
+                    dur="4s"
+                    repeatCount="indefinite"
+                    begin={`${route.delay}s`}
+                    path={path}
+                  />
+                </circle>
+              )}
+            </g>
+          );
+        })}
+
+        {/* City dots */}
+        {CITIES.map((city) => (
+          <g key={city.id}>
+            <circle
+              cx={city.x * 10}
+              cy={city.y * 5}
+              r="3"
+              fill="white"
+              opacity="0.6"
+            />
+            <circle
+              cx={city.x * 10}
+              cy={city.y * 5}
+              r="6"
+              fill="none"
+              stroke="white"
+              strokeWidth="0.5"
+              opacity="0.3"
+            />
+          </g>
+        ))}
+      </svg>
+    </div>
   );
 }

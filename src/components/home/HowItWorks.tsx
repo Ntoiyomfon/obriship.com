@@ -1,40 +1,55 @@
 const steps = [
   {
+    number: "01",
     title: "Enter your tracking number",
-    description: "Use the number from your confirmation, label, or carrier handoff."
+    description:
+      "Use the number from your confirmation, shipping label, or carrier handoff document.",
   },
   {
+    number: "02",
     title: "We locate your shipment",
-    description: "FX Logistics checks the latest carrier and checkpoint records."
+    description:
+      "FX Logistics queries the latest carrier and checkpoint records across 150+ networks.",
   },
   {
+    number: "03",
     title: "Live updates until delivery",
-    description: "Follow each status change from origin through final delivery."
-  }
+    description:
+      "Follow every status change from origin through final delivery — no refresh needed.",
+  },
 ];
 
 export function HowItWorks() {
   return (
     <section className="bg-[--surface] py-20 md:py-28">
-      <div className="section-shell space-y-12">
-        <div className="max-w-2xl space-y-4">
-          <h2 className="text-balance font-display text-headline text-[--ink]">
+      <div className="section-shell space-y-16">
+        <div className="max-w-xl space-y-3">
+          <p className="section-label">How It Works</p>
+          <h2 className="font-display text-headline text-[--ink]">
             Three steps from uncertainty to a live shipment view.
           </h2>
-          <p className="text-pretty text-body text-[--ink-muted]">
-            Tracking stays simple for recipients and useful for operations teams.
-          </p>
         </div>
-        <div className="relative grid gap-8 md:grid-cols-3">
-          <div className="absolute left-[16.5%] right-[16.5%] top-10 hidden border-t border-dashed border-[--freight]/30 md:block" />
+
+        <div className="grid gap-0 md:grid-cols-3">
           {steps.map((step, index) => (
-            <article key={step.title} className="relative space-y-4">
-              <div className="relative z-10 inline-grid size-20 place-items-center rounded-xl border border-[--border] bg-white shadow-soft">
-                <span className="font-display text-4xl font-extrabold text-[--freight]">{index + 1}</span>
-              </div>
+            <article
+              key={step.number}
+              className={`relative space-y-5 py-8 pr-8 ${
+                index < steps.length - 1
+                  ? "border-b border-[--border] md:border-b-0 md:border-r"
+                  : ""
+              } ${index > 0 ? "md:pl-8" : ""}`}
+            >
+              <span className="font-display text-[80px] font-extrabold leading-none text-[--freight]/15 select-none">
+                {step.number}
+              </span>
               <div className="space-y-2">
-                <h3 className="text-balance font-display text-title text-[--ink]">{step.title}</h3>
-                <p className="text-pretty text-small text-[--ink-muted]">{step.description}</p>
+                <h3 className="font-display text-title font-bold text-[--ink]">
+                  {step.title}
+                </h3>
+                <p className="text-small text-[--ink-muted] leading-relaxed">
+                  {step.description}
+                </p>
               </div>
             </article>
           ))}
