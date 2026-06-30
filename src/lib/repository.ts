@@ -539,6 +539,10 @@ export async function updateBookingStatus(
   }
 }
 
+function normalizeServiceType(service: string): string {
+  return service.toUpperCase();
+}
+
 export async function convertBookingToShipment(
   booking: BookingRow
 ): Promise<void> {
@@ -570,7 +574,7 @@ export async function convertBookingToShipment(
     recipient_name: String(receiver.name ?? receiver.full_name ?? receiver.firstName ?? ""),
     recipient_email: String(receiver.email ?? ""),
     recipient_country: String(receiver.country ?? ""),
-    service_type: booking.service,
+    service_type: normalizeServiceType(booking.service),
     current_status: "PENDING",
     user_id: booking.user_id ?? null,
     weight_kg: typeof pkg.weight === "number" ? pkg.weight : null,

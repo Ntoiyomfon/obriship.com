@@ -8,7 +8,7 @@ create table if not exists public.shipments (
   recipient_name text not null,
   recipient_country text not null,
   recipient_email text not null,
-  service_type text not null check (service_type in ('EXPRESS', 'STANDARD', 'ECONOMY')),
+  service_type text not null check (service_type in ('STANDARD', 'EXPRESS', 'AIR', 'SEA')),
   weight_kg numeric(8, 2),
   description text,
   current_status text not null default 'ORDER_PLACED',

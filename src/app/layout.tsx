@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono, Bricolage_Grotesque } from "next/font/google";
+import { Inter, Bricolage_Grotesque } from "next/font/google";
 import "leaflet/dist/leaflet.css";
 
 import { Providers } from "@/components/layout/Providers";
@@ -22,11 +22,6 @@ const bricolageGrotesque = Bricolage_Grotesque({
   preload: false,
 });
 
-const jetBrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-  weight: ["400", "500"]
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.siteUrl),
@@ -66,7 +61,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${bricolageGrotesque.variable} ${inter.variable} ${jetBrainsMono.variable}`}>
+    <html lang="en" className={`${bricolageGrotesque.variable} ${inter.variable}`}>
       <body>
         <Providers>{children}</Providers>
       </body>

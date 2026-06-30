@@ -167,7 +167,7 @@ export const mockShipments: Shipment[] = [
     recipientName: "Harbor Retail",
     recipientCountry: "United States",
     recipientEmail: "receiving@harborretail.example",
-    serviceType: "ECONOMY",
+    serviceType: "STANDARD",
     weightKg: 32.4,
     description: "Retail fixtures and electronic labels.",
     currentStatus: "OUT_FOR_DELIVERY",

@@ -38,7 +38,7 @@ function buildEmailHtml(shipment: Shipment, status: ShipmentStatus) {
             status
           )}.
         </p>
-        <div style="font-family: 'JetBrains Mono', monospace; background: #0e1117; color: #ffffff; padding: 14px 16px; border-radius: 12px; margin-bottom: 22px;">
+        <div style="font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace; background: #0e1117; color: #ffffff; padding: 14px 16px; border-radius: 12px; margin-bottom: 22px;">
           ${shipment.trackingId}
         </div>
         <a href="${trackingUrl}" style="display: inline-block; background: #c7500a; color: #ffffff; padding: 14px 22px; border-radius: 12px; text-decoration: none; font-weight: 600;">
@@ -112,7 +112,7 @@ export async function sendBookingEmail(
         <p style="font-size: 16px; line-height: 1.7; color: #374151; margin: 0 0 20px;">
           ${body}
         </p>
-        <div style="font-family: 'JetBrains Mono', monospace; background: #0e1117; color: #ffffff; padding: 14px 16px; border-radius: 12px; margin-bottom: 22px;">
+        <div style="font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace; background: #0e1117; color: #ffffff; padding: 14px 16px; border-radius: 12px; margin-bottom: 22px;">
           ${bookingTrackingId}
         </div>
         <a href="${ctaUrl}" style="display: inline-block; background: #c7500a; color: #ffffff; padding: 14px 22px; border-radius: 12px; text-decoration: none; font-weight: 600;">

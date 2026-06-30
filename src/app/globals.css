@@ -28,9 +28,8 @@
   --color-warning: var(--warning);
   --color-error: var(--error);
   --color-ink-text: #ffffff;
-  --font-display: var(--font-display);
   --font-body: "Inter", sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 }
 
 html {

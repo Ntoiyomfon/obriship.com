@@ -16,7 +16,7 @@ export const PROGRESS_STEPS = [
   "DELIVERED"
 ] as const;
 
-export const SERVICE_TYPES = ["EXPRESS", "STANDARD", "ECONOMY"] as const;
+export const SERVICE_TYPES = ["STANDARD", "EXPRESS", "AIR", "SEA"] as const;
 
 export const EMAIL_MILESTONE_STATUSES = [
   "IN_TRANSIT",
