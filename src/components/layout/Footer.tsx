@@ -32,9 +32,30 @@ export function Footer() {
           <p className="text-xs font-semibold uppercase tracking-widest text-white/30">
             Carrier network
           </p>
+          <div className="flex flex-wrap gap-3">
+            {[
+              { name: "UPS", slug: "ups" },
+              { name: "FedEx", slug: "fedex" },
+              { name: "DHL", slug: "dhl" },
+              { name: "USPS", slug: "usps" },
+              { name: "Qatar Cargo", slug: "qatarairways" },
+              { name: "Emirates SkyCargo", slug: "emirates" },
+            ].map((carrier) => (
+              <span
+                key={carrier.name}
+                className="flex items-center gap-2 rounded-lg border border-white/10 px-3 py-2 text-xs font-medium text-white/60"
+              >
+                <img
+                  src={`https://cdn.simpleicons.org/${carrier.slug}/ffffff`}
+                  alt={`${carrier.name} logo`}
+                  className="h-3.5 w-3.5 shrink-0 opacity-70"
+                />
+                {carrier.name}
+              </span>
+            ))}
+          </div>
           <div className="flex flex-wrap gap-2">
-            {["UPS", "FedEx", "DHL", "USPS", "TNT", "Aramex",
-              "Maersk", "MSC", "Emirates SkyCargo", "Qatar Cargo"].map((carrier) => (
+            {["TNT", "Aramex", "Maersk", "MSC"].map((carrier) => (
               <span
                 key={carrier}
                 className="rounded-lg border border-white/10 px-3 py-1.5 text-xs font-medium text-white/50"

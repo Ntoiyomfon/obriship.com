@@ -6,7 +6,7 @@ export function Hero() {
       {/* Photo background */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/hero-bg.webp"
+          src="/hero-bg-v2.webp"
           alt=""
           aria-hidden="true"
           className="h-full w-full object-cover object-center"
@@ -29,7 +29,7 @@ export function Hero() {
         <div className="max-w-[680px] space-y-8">
           <div className="space-y-5">
             <h1 className="text-balance font-display text-[clamp(3rem,9vw,4rem)] font-extrabold leading-none tracking-[-0.04em] text-white md:text-display">
-              Your shipment, tracked in real time.
+              Reliable global shipping. Track every shipment from pickup to deliver.
             </h1>
             <p className="max-w-xl text-pretty text-small text-white/65">
               From pickup to doorstep, enter your tracking number for a live view of your shipment.

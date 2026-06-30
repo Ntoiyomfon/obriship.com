@@ -43,7 +43,7 @@ export function TrackingSearchBar({
         Track your shipment
       </Label>
       <div
-        className={`flex flex-1 items-center gap-3 rounded-full ${
+        className={`flex flex-1 items-center gap-3 rounded-xl ${
           isCompact ? "px-3" : "border border-border bg-surface px-4"
         }`}
       >
@@ -63,7 +63,7 @@ export function TrackingSearchBar({
           aria-label="Tracking number"
         />
       </div>
-      <Button type="submit" className={isCompact ? "h-8 px-4" : "h-12 rounded-full px-8"}>
+      <Button type="submit" className={isCompact ? "h-8 px-4" : "h-12 rounded-xl px-8"}>
         {isSubmitting ? (
           <>
             <LoaderCircle className="mr-2 h-4 w-4 animate-spin" />

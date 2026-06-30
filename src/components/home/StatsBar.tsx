@@ -33,15 +33,17 @@ export function StatsBar() {
       <div className="section-shell py-16 md:py-20">
         <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4">
           {stats.map(({ icon: Icon, value, label, description }) => (
-            <div key={label} className="space-y-3">
-              <div className="inline-flex size-11 items-center justify-center rounded-xl bg-[--freight-light]">
-                <Icon className="size-5 text-[--freight]" strokeWidth={1.5} />
-              </div>
-              <div>
-                <p className="font-display text-5xl font-extrabold tracking-tight text-[--ink] md:text-6xl">
+            <div key={label} className="space-y-2">
+              <div className="flex items-center gap-3">
+                <div className="inline-flex size-11 shrink-0 items-center justify-center rounded-xl bg-[--freight-light]">
+                  <Icon className="size-5 text-[--freight]" strokeWidth={1.5} />
+                </div>
+                <p className="font-display text-2xl font-extrabold tracking-tight text-[--ink] md:text-4xl">
                   {value}
                 </p>
-                <p className="mt-1 text-sm font-semibold text-[--ink]">
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-[--ink]">
                   {label}
                 </p>
                 <p className="mt-0.5 text-xs text-[--ink-muted] leading-relaxed">
