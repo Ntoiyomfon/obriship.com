@@ -116,12 +116,11 @@ export function Navbar({
           aria-label="FX Logistics home"
           className="flex items-center gap-3 shrink-0"
         >
-          <span className="grid size-9 place-items-center rounded-xl bg-[--ink] font-bold text-sm text-white tracking-tight">
-            FX
-          </span>
-          <span className="hidden font-bold text-[--ink] sm:block">
-            Logistics
-          </span>
+          <img
+            src="/fxlogisticslogo.png"
+            alt="FX Logistics"
+            className="h-8 w-auto object-contain"
+          />
         </Link>
 
         {/* Center: compact tracking bar */}

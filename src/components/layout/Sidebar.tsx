@@ -40,11 +40,23 @@ export function Sidebar({
 
   return (
     <aside className="hidden min-h-dvh w-60 shrink-0 bg-[--ink] text-white lg:flex lg:flex-col">
-      <div className="p-6 font-display text-2xl font-extrabold tracking-tight">FX</div>
+      <div className="px-6 py-6">
+        <img
+          src="/fxlogisticslogo.png"
+          alt="FX Logistics"
+          className="h-7 w-auto object-contain brightness-0 invert"
+        />
+      </div>
       <SidebarNav />
       <div className="border-t border-white/10 p-4">
         <div className="flex items-center gap-3">
-          <div className="grid size-9 place-items-center rounded-xl bg-white/10 font-display font-bold">FX</div>
+          <div className="grid size-9 place-items-center rounded-xl bg-white/10 p-[6px]">
+            <img
+              src="/fxlogisticslogo.png"
+              alt="FX Logistics"
+              className="h-full w-auto object-contain brightness-0 invert opacity-80"
+            />
+          </div>
           <div className="min-w-0">
             <p className="truncate text-sm font-medium">{email}</p>
             <form action={signOut}>

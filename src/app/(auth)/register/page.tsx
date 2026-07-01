@@ -3,10 +3,11 @@
 import { useActionState } from "react";
 import Link from "next/link";
 
-import { RouteMap } from "@/components/map/RouteMap";
+import { AuthBrandPanel } from "@/components/auth/AuthBrandPanel";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { PasswordInput } from "@/components/ui/password-input";
 
 import { signUp, type SignUpState } from "./actions";
 
@@ -19,17 +20,7 @@ export default function RegisterPage() {
   if (state.success) {
     return (
       <main className="grid min-h-dvh bg-white lg:grid-cols-[45fr_55fr]">
-        <section className="relative hidden overflow-hidden bg-[--freight-dim] p-10 text-white lg:flex lg:flex-col">
-          <p className="font-display text-2xl font-extrabold tracking-tight">
-            FX Logistics
-          </p>
-          <div className="flex flex-1 items-center">
-            <h1 className="max-w-lg text-balance font-display text-display text-white">
-              Join thousands shipping with confidence.
-            </h1>
-          </div>
-          <RouteMap className="absolute bottom-0 left-0 h-72 w-full opacity-55" />
-        </section>
+        <AuthBrandPanel tagline="Join thousands shipping with confidence." />
         <section className="flex items-center justify-center px-5 py-12 sm:px-8">
           <div className="w-full max-w-[400px] space-y-6 text-center">
             <div className="space-y-4">
@@ -70,23 +61,15 @@ export default function RegisterPage() {
 
   return (
     <main className="grid min-h-dvh bg-white lg:grid-cols-[45fr_55fr]">
-      <section className="relative hidden overflow-hidden bg-[--freight-dim] p-10 text-white lg:flex lg:flex-col">
-        <p className="font-display text-2xl font-extrabold tracking-tight">
-          FX Logistics
-        </p>
-        <div className="flex flex-1 items-center">
-          <h1 className="max-w-lg text-balance font-display text-display text-white">
-            Join thousands shipping with confidence.
-          </h1>
-        </div>
-        <RouteMap className="absolute bottom-0 left-0 h-72 w-full opacity-55" />
-      </section>
+      <AuthBrandPanel tagline="Join thousands shipping with confidence." />
       <section className="flex items-center justify-center px-5 py-12 sm:px-8">
         <form action={formAction} className="w-full max-w-[400px] space-y-5" noValidate>
           <div className="space-y-2">
-            <p className="font-display text-2xl font-extrabold tracking-tight text-[--ink] lg:hidden">
-              FX Logistics
-            </p>
+            <img
+              src="/fxlogisticslogo.png"
+              alt="FX Logistics"
+              className="mb-2 h-7 w-auto object-contain lg:hidden"
+            />
             <h2 className="font-display text-title text-[--ink]">
               Create your account
             </h2>
@@ -135,10 +118,9 @@ export default function RegisterPage() {
             <Label htmlFor="password" className="text-[--ink]">
               Password
             </Label>
-            <Input
+            <PasswordInput
               id="password"
               name="password"
-              type="password"
               autoComplete="new-password"
               required
               minLength={8}
@@ -154,10 +136,9 @@ export default function RegisterPage() {
             <Label htmlFor="confirm_password" className="text-[--ink]">
               Confirm password
             </Label>
-            <Input
+            <PasswordInput
               id="confirm_password"
               name="confirm_password"
-              type="password"
               autoComplete="new-password"
               required
             />

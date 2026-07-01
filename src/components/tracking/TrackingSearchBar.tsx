@@ -36,7 +36,7 @@ export function TrackingSearchBar({
     <form
       onSubmit={onSubmit}
       className={`flex gap-2  ${
-        isCompact ? "h-11 items-center p-1.5" : "flex-col p-3 sm:h-16 sm:flex-row sm:items-center"
+        isCompact ? "h-auto min-h-11 flex-wrap items-center gap-2 p-1.5" : "flex-col p-3 sm:h-16 sm:flex-row sm:items-center"
       } ${className}`}
     >
       <Label htmlFor={inputId} className="sr-only">
@@ -44,7 +44,7 @@ export function TrackingSearchBar({
       </Label>
       <div
         className={`flex flex-1 items-center gap-3 rounded-xl ${
-          isCompact ? "px-3" : "border border-border bg-surface px-4"
+          isCompact ? "px-3 min-w-0 flex-1" : "border border-border bg-surface px-4"
         }`}
       >
         <Search className="h-4 w-4 text-muted" />
@@ -58,7 +58,7 @@ export function TrackingSearchBar({
           autoComplete="off"
           spellCheck={false}
           className={`border-0 bg-transparent px-0 font-mono text-mono !text-ink caret-ink shadow-none focus:ring-0 ${
-            isCompact ? "h-8 w-44" : "h-12"
+            isCompact ? "h-8 w-full min-w-0" : "h-12"
           }`}
           aria-label="Tracking number"
         />

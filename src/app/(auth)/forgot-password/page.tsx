@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { createServerClient } from "@supabase/ssr";
 import type { CookieOptions } from "@supabase/ssr";
 
-import { RouteMap } from "@/components/map/RouteMap";
+import { AuthBrandPanel } from "@/components/auth/AuthBrandPanel";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -51,17 +51,7 @@ export default async function ForgotPasswordPage({
 
   return (
     <main className="grid min-h-dvh bg-white lg:grid-cols-[45fr_55fr]">
-      <section className="relative hidden overflow-hidden bg-[--freight-dim] p-10 text-white lg:flex lg:flex-col">
-        <p className="font-display text-2xl font-extrabold tracking-tight">
-          FX Logistics
-        </p>
-        <div className="flex flex-1 items-center">
-          <h1 className="max-w-lg text-balance font-display text-display text-white">
-            Reset your password.
-          </h1>
-        </div>
-        <RouteMap className="absolute bottom-0 left-0 h-72 w-full opacity-55" />
-      </section>
+      <AuthBrandPanel tagline="Reset your password." />
       <section className="flex items-center justify-center px-5 py-12 sm:px-8">
         {hasSent ? (
           <div className="w-full max-w-[400px] space-y-6 text-center">
@@ -101,9 +91,11 @@ export default async function ForgotPasswordPage({
             className="w-full max-w-[400px] space-y-6"
           >
             <div className="space-y-2">
-              <p className="font-display text-2xl font-extrabold tracking-tight text-[--ink] lg:hidden">
-                FX Logistics
-              </p>
+              <img
+                src="/fxlogisticslogo.png"
+                alt="FX Logistics"
+                className="mb-2 h-7 w-auto object-contain lg:hidden"
+              />
               <h2 className="font-display text-title text-[--ink]">
                 Forgot your password?
               </h2>

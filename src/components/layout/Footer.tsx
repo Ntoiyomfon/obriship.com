@@ -69,14 +69,11 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-12 md:grid-cols-[2fr_1fr_1fr_1fr]">
           {/* Brand */}
           <div className="space-y-4">
-            <div className="inline-flex items-center gap-3">
-              <span className="grid size-9 place-items-center rounded-xl bg-[--freight] font-display text-sm font-extrabold text-white">
-                FX
-              </span>
-              <span className="font-display text-lg font-bold text-white">
-                Logistics
-              </span>
-            </div>
+            <img
+              src="/fxlogisticslogo.png"
+              alt="FX Logistics"
+              className="h-8 w-auto object-contain brightness-0 invert opacity-80"
+            />
             <p className="max-w-xs text-sm leading-relaxed text-white/50">
               Real-time freight tracking and booking for businesses and
               individuals. 150+ carrier networks, one platform.

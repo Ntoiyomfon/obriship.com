@@ -35,12 +35,14 @@ export function DashboardClient({ userId }: { userId: string | undefined }) {
       {!isLoading && !error ? (
         <>
           <StatCards shipments={shipments} />
-          <div className="grid gap-6 xl:grid-cols-[minmax(0,1.45fr)_minmax(320px,0.55fr)]">
+          <div className="grid gap-6 grid-cols-1 xl:grid-cols-[minmax(0,1.45fr)_minmax(320px,0.55fr)]">
             <ShipmentsTable shipments={shipments} />
             <aside className="space-y-4">
               <section className="surface-card p-5">
                 <h2 className="font-display text-title text-[--ink]">Quick Track</h2>
-                <TrackingSearchBar variant="compact" autoFocus={false} className="mt-4" />
+                <div className="overflow-hidden mt-4">
+                  <TrackingSearchBar variant="compact" autoFocus={false} className="w-full" />
+                </div>
                 <div className="mt-5 space-y-2">
                   {shipments.slice(0, 3).map((shipment) => (
                     <p key={shipment.id} className="font-mono text-xs text-[--ink-muted]">
