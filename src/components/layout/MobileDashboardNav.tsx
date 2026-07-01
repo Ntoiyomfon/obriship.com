@@ -22,16 +22,20 @@ export function MobileDashboardNav() {
       <div className="grid h-16 grid-cols-5">
         {items.map((item, index) => {
           const Icon = item.icon;
-          const active = pathname === item.href || pathname.startsWith(item.href === "/dashboard" ? "/dashboard" : item.href + "/") || (item.href !== "/dashboard" && pathname.startsWith(item.href));
+          const isActive =
+            pathname === item.href ||
+            (item.href !== "/dashboard" &&
+              item.href !== "/book" &&
+              pathname.startsWith(item.href));
 
           return (
             <Link
               key={`${item.label}-${index}`}
               href={item.href}
-              aria-current={active ? "page" : undefined}
+              aria-current={isActive ? "page" : undefined}
               className={cn(
                 "flex flex-col items-center justify-center gap-1 text-[0.68rem] font-medium text-[--ink-muted] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[--focus]",
-                active && "text-[--freight]"
+                isActive && "text-[--freight]"
               )}
             >
               <Icon className="size-4" />
