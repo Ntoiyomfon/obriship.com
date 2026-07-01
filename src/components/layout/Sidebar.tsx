@@ -8,14 +8,20 @@ import { env } from "@/lib/env";
 import type { Database } from "@/types/database.types";
 
 const items = [
-  ["Dashboard", "/dashboard", LayoutDashboard],
-  ["Track Shipment", "/", PackageSearch],
-  ["Book Shipment", "/book", BookOpen],
-  ["My Shipments", "/dashboard", Truck],
-  ["Settings", "/dashboard", Settings]
+  { label: "Dashboard", href: "/dashboard", Icon: LayoutDashboard },
+  { label: "Track Shipment", href: "/dashboard/track", Icon: PackageSearch },
+  { label: "Book Shipment", href: "/book", Icon: BookOpen },
+  { label: "My Shipments", href: "/dashboard/shipments", Icon: Truck },
+  { label: "Settings", href: "/dashboard/settings", Icon: Settings },
 ] as const;
 
-export function Sidebar({ email }: { email: string }) {
+export function Sidebar({
+  email,
+  currentPath = "/dashboard",
+}: {
+  email: string;
+  currentPath?: string;
+}) {
   async function signOut() {
     "use server";
 
@@ -46,18 +52,26 @@ export function Sidebar({ email }: { email: string }) {
     <aside className="hidden min-h-dvh w-60 shrink-0 bg-[--ink] text-white lg:flex lg:flex-col">
       <div className="p-6 font-display text-2xl font-extrabold tracking-tight">FX</div>
       <nav className="flex-1 space-y-1 px-3">
-        {items.map(([label, href, Icon], index) => (
-          <Link
-            key={`${label}-${index}`}
-            href={href}
-            className={`flex items-center gap-3 rounded-xl px-3 py-3 text-sm transition hover:bg-white/10 ${
-              index === 0 ? "border-l-2 border-[--freight] bg-white/10 text-white" : "text-white/72"
-            }`}
-          >
-            <Icon className="size-4" />
-            {label}
-          </Link>
-        ))}
+        {items.map((item) => {
+          const isActive =
+            currentPath === item.href ||
+            (item.href !== "/dashboard" && currentPath.startsWith(item.href));
+
+          return (
+            <Link
+              key={item.label}
+              href={item.href}
+              className={`flex items-center gap-3 rounded-xl px-3 py-3 text-sm transition hover:bg-white/10 ${
+                isActive
+                  ? "border-l-2 border-[--freight] bg-white/10 text-white"
+                  : "text-white/70"
+              }`}
+            >
+              <item.Icon className="size-4" />
+              {item.label}
+            </Link>
+          );
+        })}
       </nav>
       <div className="border-t border-white/10 p-4">
         <div className="flex items-center gap-3">

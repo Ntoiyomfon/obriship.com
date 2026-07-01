@@ -8,10 +8,10 @@ import { cn } from "@/lib/utils";
 
 const items = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/", label: "Track", icon: PackageSearch },
+  { href: "/dashboard/track", label: "Track", icon: PackageSearch },
   { href: "/book", label: "Book", icon: BookOpen },
-  { href: "/dashboard", label: "Shipments", icon: Truck },
-  { href: "/dashboard", label: "Settings", icon: Settings }
+  { href: "/dashboard/shipments", label: "Shipments", icon: Truck },
+  { href: "/dashboard/settings", label: "Settings", icon: Settings }
 ];
 
 export function MobileDashboardNav() {
@@ -22,7 +22,7 @@ export function MobileDashboardNav() {
       <div className="grid h-16 grid-cols-5">
         {items.map((item, index) => {
           const Icon = item.icon;
-          const active = pathname === item.href && (item.href !== "/dashboard" || index === 0);
+          const active = pathname === item.href || pathname.startsWith(item.href === "/dashboard" ? "/dashboard" : item.href + "/") || (item.href !== "/dashboard" && pathname.startsWith(item.href));
 
           return (
             <Link

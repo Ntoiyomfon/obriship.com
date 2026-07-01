@@ -72,7 +72,9 @@ export function TrackingResultCard({ initialShipment }: { initialShipment: Shipm
             </div>
             <div>
               <dt className="text-small text-[--ink-muted]">Carrier</dt>
-              <dd className="font-mono text-mono text-[--ink]">FX Logistics {shipment.serviceType}</dd>
+              <dd className="font-mono text-mono text-[--ink]">
+                FX Logistics · {shipment.serviceType.charAt(0).toUpperCase() + shipment.serviceType.slice(1).toLowerCase()}
+            </dd>
             </div>
           </dl>
         </section>
