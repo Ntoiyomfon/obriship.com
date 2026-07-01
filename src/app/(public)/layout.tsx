@@ -1,5 +1,5 @@
 import { Footer } from "@/components/layout/Footer";
-import { Navbar } from "@/components/layout/Navbar";
+import { NavbarWrapper } from "@/components/layout/NavbarWrapper";
 
 export default function PublicLayout({
   children
@@ -8,7 +8,7 @@ export default function PublicLayout({
 }) {
   return (
     <div className="min-h-screen bg-surface">
-      <Navbar />
+      <NavbarWrapper />
       {children}
       <Footer />
     </div>

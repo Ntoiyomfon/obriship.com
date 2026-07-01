@@ -92,7 +92,15 @@ const navLinks = [
   { href: "/book", label: "Book a Shipment" },
 ];
 
-export function Navbar() {
+interface NavbarProps {
+  isAuthenticated?: boolean;
+  userEmail?: string | null;
+}
+
+export function Navbar({
+  isAuthenticated = false,
+  userEmail = null
+}: NavbarProps) {
   const pathname = usePathname();
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const passedHero = useScrollPosition(400);
@@ -140,19 +148,41 @@ export function Navbar() {
             </Link>
           ))}
           <div className="ml-3 flex items-center gap-2">
-            <Link
-              href="/login"
-              className="px-4 py-2 text-sm font-medium text-[--ink-muted] hover:text-[--ink] transition-colors"
-            >
-              Log In
-            </Link>
-            <Link
-              href="/register"
-              className="px-4 py-2 text-sm font-semibold rounded-lg bg-[--freight] text-white hover:bg-[#b04508] transition-colors"
-            >
-              Sign Up
-            </Link>
-            <CountrySelector />
+            {isAuthenticated ? (
+              <>
+                <Link
+                  href="/dashboard"
+                  className="px-4 py-2 text-sm font-medium text-[--ink-muted] hover:text-[--ink] transition-colors"
+                >
+                  Dashboard
+                </Link>
+                <div className="flex items-center gap-2 rounded-xl border border-[--border] px-3 py-2">
+                  <div className="grid size-7 place-items-center rounded-lg bg-[--freight] text-xs font-bold text-white">
+                    {userEmail ? userEmail[0].toUpperCase() : "U"}
+                  </div>
+                  <span className="max-w-[120px] truncate text-sm font-medium text-[--ink]">
+                    {userEmail ?? "Account"}
+                  </span>
+                </div>
+                <CountrySelector />
+              </>
+            ) : (
+              <>
+                <Link
+                  href="/login"
+                  className="px-4 py-2 text-sm font-medium text-[--ink-muted] hover:text-[--ink] transition-colors"
+                >
+                  Log In
+                </Link>
+                <Link
+                  href="/register"
+                  className="px-4 py-2 text-sm font-semibold rounded-lg bg-[--freight] text-white hover:bg-[#b04508] transition-colors"
+                >
+                  Sign Up
+                </Link>
+                <CountrySelector />
+              </>
+            )}
           </div>
         </nav>
 
@@ -188,8 +218,12 @@ export function Navbar() {
               <div className="mt-6 flex flex-col gap-2">
                 {[
                   ...navLinks,
-                  { href: "/login", label: "Log In" },
-                  { href: "/register", label: "Sign Up" },
+                  ...(isAuthenticated
+                    ? [{ href: "/dashboard", label: "Dashboard" }]
+                    : [
+                        { href: "/login", label: "Log In" },
+                        { href: "/register", label: "Sign Up" },
+                      ]),
                 ].map((item) => (
                   <SheetClose key={item.href} asChild>
                     <Link
@@ -200,6 +234,16 @@ export function Navbar() {
                     </Link>
                   </SheetClose>
                 ))}
+                {isAuthenticated && userEmail && (
+                  <div className="flex items-center gap-3 rounded-xl border border-[--border] px-4 py-3.5 text-sm text-[--ink-muted]">
+                    <div className="grid size-7 place-items-center rounded-lg bg-[--freight] text-xs font-bold text-white">
+                      {userEmail[0].toUpperCase()}
+                    </div>
+                    <span className="max-w-[180px] truncate font-medium text-[--ink]">
+                      {userEmail}
+                    </span>
+                  </div>
+                )}
               </div>
             </SheetContent>
           </Sheet>
